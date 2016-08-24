@@ -32,6 +32,11 @@ public class GenerateReferenceStrings {
 				continue;
 			}
 
+			// Some tags don't match with the reference text
+			if (line.startsWith("GLOBAL_KEYWORD_IMMUNE")) {
+				line = line.replace("GLOBAL_KEYWORD_IMMUNE", "GLOBAL_KEYWORD_CANT_BE_DAMAGED");
+			}
+
 			String[] elements = line.split("\t");
 			JSONObject stringObj = null;
 			if (referenceStrings.has(elements[0])) {
