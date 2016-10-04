@@ -30,7 +30,9 @@ public class GenerateCardData {
 
 			for (Object cardObject : referenceCards) {
 				JSONObject card = (JSONObject) cardObject;
-				System.out.println("do the card " + card.getJSONObject("name").getString("enUS") + " " + cardObject);
+				// System.out.println("do the card " +
+				// card.getJSONObject("name").getString("enUS") + " " +
+				// cardObject);
 				JSONObject nameLoc = card.getJSONObject("name");
 				card.remove("name");
 				String id = card.getString("id");
