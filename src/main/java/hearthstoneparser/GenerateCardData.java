@@ -22,6 +22,8 @@ public class GenerateCardData {
 				((org.json.simple.JSONArray) parser.parse(new FileReader("ref_allCards.json"))).toJSONString());
 		JSONObject imageMap = new JSONObject(
 				((org.json.simple.JSONObject) parser.parse(new FileReader("ref_imageMap.json"))).toJSONString());
+		JSONObject goldImageMap = new JSONObject(
+				((org.json.simple.JSONObject) parser.parse(new FileReader("ref_goldImageMap.json"))).toJSONString());
 
 		FileWriter cardsWriter = new FileWriter("out_cardsWithImages.json", false);
 
@@ -78,16 +80,43 @@ public class GenerateCardData {
 
 				// Now handle images
 				String imageName = id + ".png";
-				if (imageMap.has(id)) {
+				if (imageMap.has(id) && goldImageMap.has(id)) {
 					// This means we have already downloaded the image
 					card.put("cardImage", imageName);
 				}
+				else if (imageMap.has(id)) {
+					// Get the golden image
+					System.out.println("Trying to get golden image for " + id);
+					String spec = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/" + id
+							+ "_premium.gif" + "?12576";
+
+					try {
+						// Download the card
+						URL url = new URL(spec);
+						InputStream in = url.openStream();
+						Files.copy(in, Paths.get("images/en/golden/" + id + ".gif"));
+						// Update the card
+						card.put("goldenImage", id + ".gif");
+						goldImageMap.put(id, id + ".gif");
+						in.close();
+					}
+					catch (FileAlreadyExistsException e) {
+						// Update the card
+						card.put("goldenImage", id + ".gif");
+						goldImageMap.put(id, id + ".gif");
+					}
+					catch (Exception e) {
+						System.out.println("Image does not exist " + imageName + " at path " + spec);
+						// e.printStackTrace();
+					}
+				}
 				else {
 					// First try to download the image from a reliable source :)
-					String spec = "http://wow.zamimg.com/images/hearthstone/cards/enus/original/" + imageName
-							+ "?12576";
-					String specFr = "http://wow.zamimg.com/images/hearthstone/cards/frfr/original/" + imageName
-							+ "?12576";
+					String spec = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/" + imageName + "?12576";
+					// String specFr =
+					// "http://wow.zamimg.com/images/hearthstone/cards/frfr/original/"
+					// + imageName
+					// + "?12576";
 					try {
 						// Download the card
 						URL url = new URL(spec);
@@ -109,21 +138,22 @@ public class GenerateCardData {
 					}
 
 					// And download the localized version
-					try {
-						URL url = new URL(specFr);
-						InputStream in = url.openStream();
-						Files.copy(in, Paths.get("images/fr/" + imageName));
-						in.close();
-					}
-					catch (Exception e) {
-						// e.printStackTrace();
-					}
+					// try {
+					// URL url = new URL(specFr);
+					// InputStream in = url.openStream();
+					// Files.copy(in, Paths.get("images/fr/" + imageName));
+					// in.close();
+					// }
+					// catch (Exception e) {
+					// // e.printStackTrace();
+					// }
 				}
 
 				// System.out.println(card);
 				cardsWriter.write(cardObject.toString() + ",");
 			}
 			System.out.println(imageMap);
+			System.out.println(goldImageMap);
 			System.out.println(referenceCards);
 
 			cardsWriter.close();
@@ -131,12 +161,21 @@ public class GenerateCardData {
 			imagesWriter.write(imageMap.toString());
 			imagesWriter.close();
 
+			FileWriter goldImagesWriter = new FileWriter("ref_goldImageMap.json", false);
+			goldImagesWriter.write(goldImageMap.toString());
+			goldImagesWriter.close();
+
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 			if (imageMap != null) {
 				FileWriter imagesWriter = new FileWriter("ref_imageMap.json", false);
 				imagesWriter.write(imageMap.toString());
+				imagesWriter.close();
+			}
+			if (goldImageMap != null) {
+				FileWriter imagesWriter = new FileWriter("ref_goldImageMap.json", false);
+				imagesWriter.write(goldImageMap.toString());
 				imagesWriter.close();
 			}
 		}

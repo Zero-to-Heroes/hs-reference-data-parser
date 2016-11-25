@@ -1,6 +1,7 @@
 package hearthstoneparser.arenadrafts;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.zerotoheroes.hsgameparser.db.Card;
@@ -45,10 +46,15 @@ public class GenerateDraftStats {
 					else {
 						addStats(run.getChoices().get(i), tempNormal, i);
 					}
+
+					addClassNeutralStat(fullStats, run.getChoices().get(i).getCard1().getCard());
+					addClassNeutralStat(fullStats, run.getChoices().get(i).getCard2().getCard());
+					addClassNeutralStat(fullStats, run.getChoices().get(i).getCard3().getCard());
 				}
 			}
 			catch (Exception e) {
-				System.err.println("Invalid draft? Not considering it " + run);
+				// System.err.println("Invalid draft? Not considering it " +
+				// run);
 				continue;
 			}
 
@@ -63,12 +69,34 @@ public class GenerateDraftStats {
 			fullStats.normalPicks.legendaryIds.addAll(tempNormal.legendaryIds);
 		}
 
+		// How many class cards are there?
+		int totalClassCards = new ArenaRunExtractor().numberOfClassCards();
+		int totalNeutralCards = new ArenaRunExtractor().numberOfNeutralCards();
+
 		System.out.println();
 		System.out.println("Special picks: ");
 		displayStats(fullStats.specialPicks);
 
 		System.out.println("Normal picks: ");
 		displayStats(fullStats.normalPicks);
+
+		System.out.println("Class card stats: ");
+		System.out.println("\tOffering ratio: " + fullStats.classCards * 1.0 / fullStats.neutralCards + " ");
+		System.out.println("\tPool ratio: " + totalClassCards * 1.0 / totalNeutralCards + " ");
+	}
+
+	private static void addClassNeutralStat(ByPickStats stats, Card card) {
+		String playerClass = card.getPlayerClass().toLowerCase();
+		if ("neutral".equals(playerClass)) {
+			stats.neutralCards++;
+		}
+		else if (Arrays.asList(new String[] { "druid", "hunter", "mage", "paladin", "priest", "rogue", "shaman",
+				"warlock", "warrior" }).indexOf(playerClass) != -1) {
+			stats.classCards++;
+		}
+		else {
+			System.err.println("Card is neither neutral nor class " + card);
+		}
 	}
 
 	private static void displayStats(Stats stats) {
@@ -98,7 +126,8 @@ public class GenerateDraftStats {
 		}
 		else {
 			if (pickIndex == 0 || pickIndex == 9 || pickIndex == 19 || pickIndex == 29) {
-				System.err.println("Should not have normal cards on special picks!!! " + choice);
+				// System.err.println("Should not have normal cards on special
+				// picks!!! " + choice);
 				throw new Exception("normal pick while expecting a rare pick");
 			}
 			stats.normalIds.add(card.getId());
@@ -161,6 +190,7 @@ public class GenerateDraftStats {
 	private static class ByPickStats {
 
 		Stats specialPicks = new Stats();
+		public int neutralCards, classCards;
 		Stats normalPicks = new Stats();
 	}
 }

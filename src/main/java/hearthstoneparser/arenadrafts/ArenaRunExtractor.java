@@ -227,4 +227,12 @@ public class ArenaRunExtractor {
 		// System.out.println("User IDs: " + userIds);
 		return userIds;
 	}
+
+	public int numberOfClassCards() {
+		return (int) cardsList.getCards().stream().filter(c -> !c.getPlayerClass().equalsIgnoreCase("neutral")).count();
+	}
+
+	public int numberOfNeutralCards() {
+		return (int) cardsList.getCards().stream().filter(c -> c.getPlayerClass().equalsIgnoreCase("neutral")).count();
+	}
 }
