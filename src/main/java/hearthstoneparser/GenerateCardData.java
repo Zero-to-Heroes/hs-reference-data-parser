@@ -26,12 +26,15 @@ public class GenerateCardData {
 				((org.json.simple.JSONObject) parser.parse(new FileReader("ref_goldImageMap.json"))).toJSONString());
 
 		FileWriter cardsWriter = new FileWriter("out_cardsWithImages.json", false);
-
 		System.out.println("init done " + referenceCards.length());
+		JSONObject card = null;
 		try {
 
 			for (Object cardObject : referenceCards) {
-				JSONObject card = (JSONObject) cardObject;
+				card = (JSONObject) cardObject;
+				if (!card.has("name")) {
+					continue;
+				}
 				// System.out.println("do the card " +
 				// card.getJSONObject("name").getString("enUS") + " " +
 				// cardObject);
@@ -84,7 +87,7 @@ public class GenerateCardData {
 					// This means we have already downloaded the image
 					card.put("cardImage", imageName);
 				}
-				else if (imageMap.has(id)) {
+				else if (imageMap.has(id) && !goldImageMap.has(id)) {
 					// Get the golden image
 					System.out.println("Trying to get golden image for " + id);
 					String spec = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/" + id
@@ -95,9 +98,15 @@ public class GenerateCardData {
 						URL url = new URL(spec);
 						InputStream in = url.openStream();
 						Files.copy(in, Paths.get("images/en/golden/" + id + ".gif"));
-						// Update the card
-						card.put("goldenImage", id + ".gif");
-						goldImageMap.put(id, id + ".gif");
+						long imageSize = Files.size(Paths.get("images/en/golden/" + id + ".gif"));
+						if (imageSize > 0) {
+							// Update the card
+							card.put("goldenImage", id + ".gif");
+							goldImageMap.put(id, id + ".gif");
+						}
+						else {
+							System.out.println("\tEmpty image, skipping");
+						}
 						in.close();
 					}
 					catch (FileAlreadyExistsException e) {
@@ -126,6 +135,7 @@ public class GenerateCardData {
 						card.put("cardImage", imageName);
 						imageMap.put(id, imageName);
 						in.close();
+						System.out.println("Downloaded card for " + id);
 					}
 					catch (FileAlreadyExistsException e) {
 						// Update the card
@@ -168,6 +178,7 @@ public class GenerateCardData {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+			System.err.println("Issue processing card " + card);
 			if (imageMap != null) {
 				FileWriter imagesWriter = new FileWriter("ref_imageMap.json", false);
 				imagesWriter.write(imageMap.toString());
