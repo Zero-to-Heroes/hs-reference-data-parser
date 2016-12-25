@@ -29,6 +29,10 @@ public class ArenaRunExtractor {
 
 	private static CardsList cardsList;
 
+	public static void main(String[] args) throws Exception {
+		List<Run> allRuns = new ArenaRunExtractor().extractRuns();
+	}
+
 	public List<Run> extractRuns() throws Exception {
 		if (cardsList == null) {
 			cardsList = CardsList.create();
@@ -40,6 +44,35 @@ public class ArenaRunExtractor {
 		System.out.println("Extracted " + runIds.size() + " run IDs");
 		List<Run> allRuns = buildRuns(runIds);
 		System.out.println("Build " + allRuns.size() + " runs");
+
+		return allRuns;
+	}
+
+	public List<Run> readAllRunsFromDisk() throws Exception {
+		List<Run> allRuns = new ArrayList<>();
+
+		JSONParser parser = new JSONParser();
+
+		File folder = new File("drafts/runs");
+		for (final File file : folder.listFiles()) {
+			JSONObject runData = null;
+			try {
+				runData = new JSONObject(
+						((org.json.simple.JSONObject) parser.parse(new FileReader(file))).toJSONString());
+			}
+			catch (Exception e) {
+			}
+
+			if (runData != null) {
+				Run run = new ObjectMapper().readValue(runData.toString(), Run.class);
+				if (run.getChoices().size() != 30) {
+					continue;
+				}
+				// run.setId(runId);
+				run.populateData(cardsList);
+				allRuns.add(run);
+			}
+		}
 
 		return allRuns;
 	}

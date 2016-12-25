@@ -24,6 +24,8 @@ public class GenerateCardData {
 				((org.json.simple.JSONObject) parser.parse(new FileReader("ref_imageMap.json"))).toJSONString());
 		JSONObject goldImageMap = new JSONObject(
 				((org.json.simple.JSONObject) parser.parse(new FileReader("ref_goldImageMap.json"))).toJSONString());
+		JSONObject cardsArtMap = new JSONObject(
+				((org.json.simple.JSONObject) parser.parse(new FileReader("ref_cardsArtMap.json"))).toJSONString());
 
 		FileWriter cardsWriter = new FileWriter("out_cardsWithImages.json", false);
 		System.out.println("init done " + referenceCards.length());
@@ -83,11 +85,37 @@ public class GenerateCardData {
 
 				// Now handle images
 				String imageName = id + ".png";
-				if (imageMap.has(id) && goldImageMap.has(id)) {
+
+				if (!imageMap.has(id)) {
+					String spec = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/" + imageName + "?12576";
+					try {
+						// Download the card
+						URL url = new URL(spec);
+						InputStream in = url.openStream();
+						Files.copy(in, Paths.get("images/en/" + imageName));
+						// Update the card
+						card.put("cardImage", imageName);
+						imageMap.put(id, imageName);
+						in.close();
+						System.out.println("Downloaded card for " + id);
+					}
+					catch (FileAlreadyExistsException e) {
+						// Update the card
+						card.put("cardImage", imageName);
+						imageMap.put(id, imageName);
+					}
+					catch (Exception e) {
+						System.out.println("Image does not exist " + imageName + " at path " + spec);
+						// e.printStackTrace();
+					}
+				}
+				else {
 					// This means we have already downloaded the image
 					card.put("cardImage", imageName);
 				}
-				else if (imageMap.has(id) && !goldImageMap.has(id)) {
+
+				imageName = id + ".gif";
+				if (!goldImageMap.has(id)) {
 					// Get the golden image
 					System.out.println("Trying to get golden image for " + id);
 					String spec = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/" + id
@@ -111,6 +139,8 @@ public class GenerateCardData {
 					}
 					catch (FileAlreadyExistsException e) {
 						// Update the card
+						// System.out.println("\tGolden image already exists
+						// for: " + id);
 						card.put("goldenImage", id + ".gif");
 						goldImageMap.put(id, id + ".gif");
 					}
@@ -120,50 +150,58 @@ public class GenerateCardData {
 					}
 				}
 				else {
-					// First try to download the image from a reliable source :)
-					String spec = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/" + imageName + "?12576";
-					// String specFr =
-					// "http://wow.zamimg.com/images/hearthstone/cards/frfr/original/"
-					// + imageName
-					// + "?12576";
-					try {
-						// Download the card
-						URL url = new URL(spec);
-						InputStream in = url.openStream();
-						Files.copy(in, Paths.get("images/en/" + imageName));
-						// Update the card
-						card.put("cardImage", imageName);
-						imageMap.put(id, imageName);
-						in.close();
-						System.out.println("Downloaded card for " + id);
-					}
-					catch (FileAlreadyExistsException e) {
-						// Update the card
-						card.put("cardImage", imageName);
-						imageMap.put(id, imageName);
-					}
-					catch (Exception e) {
-						System.out.println("Image does not exist " + imageName + " at path " + spec);
-						// e.printStackTrace();
-					}
-
-					// And download the localized version
-					// try {
-					// URL url = new URL(specFr);
-					// InputStream in = url.openStream();
-					// Files.copy(in, Paths.get("images/fr/" + imageName));
-					// in.close();
-					// }
-					// catch (Exception e) {
-					// // e.printStackTrace();
-					// }
+					card.put("goldenImage", imageName);
 				}
+
+				// imageName = id + ".jpg";
+				// if (!cardsArtMap.has(id)) {
+				// String spec = "http://art.hearthstonejson.com/v1/256x/" +
+				// imageName;
+				// String specBig = "http://art.hearthstonejson.com/v1/512x/" +
+				// imageName;
+				// try {
+				// // Download the card
+				// URL url = new URL(spec);
+				// InputStream in = url.openStream();
+				// Files.copy(in, Paths.get("images/cardsart/256x/" +
+				// imageName));
+				// // Update the card
+				// card.put("cardArt", imageName);
+				// cardsArtMap.put(id, imageName);
+				// in.close();
+				// System.out.println("Downloaded small card for " + id);
+				//
+				// URL urlBig = new URL(specBig);
+				// InputStream inBig = urlBig.openStream();
+				// Files.copy(inBig, Paths.get("images/cardsart/512x/" +
+				// imageName));
+				// // Update the card
+				// inBig.close();
+				// System.out.println("Downloaded big card for " + id);
+				// }
+				// catch (FileAlreadyExistsException e) {
+				// // Update the card
+				// card.put("cardArt", imageName);
+				// cardsArtMap.put(id, imageName);
+				// }
+				// catch (Exception e) {
+				// System.out.println("Image does not exist " + imageName + " at
+				// path " + spec);
+				// e.printStackTrace();
+				// }
+				// }
+				// else {
+				// // This means we have already downloaded the image
+				// card.put("cardArt", imageName);
+				// }
 
 				// System.out.println(card);
 				cardsWriter.write(cardObject.toString() + ",");
 			}
 			System.out.println(imageMap);
 			System.out.println(goldImageMap);
+			System.out.println(cardsArtMap);
+
 			System.out.println(referenceCards);
 
 			cardsWriter.close();
@@ -174,6 +212,10 @@ public class GenerateCardData {
 			FileWriter goldImagesWriter = new FileWriter("ref_goldImageMap.json", false);
 			goldImagesWriter.write(goldImageMap.toString());
 			goldImagesWriter.close();
+
+			FileWriter cardsArtWriter = new FileWriter("ref_cardsArtMap.json", false);
+			cardsArtWriter.write(cardsArtMap.toString());
+			cardsArtWriter.close();
 
 		}
 		catch (Exception e) {
@@ -187,6 +229,11 @@ public class GenerateCardData {
 			if (goldImageMap != null) {
 				FileWriter imagesWriter = new FileWriter("ref_goldImageMap.json", false);
 				imagesWriter.write(goldImageMap.toString());
+				imagesWriter.close();
+			}
+			if (cardsArtMap != null) {
+				FileWriter imagesWriter = new FileWriter("ref_cardsArtMap.json", false);
+				imagesWriter.write(cardsArtMap.toString());
 				imagesWriter.close();
 			}
 		}

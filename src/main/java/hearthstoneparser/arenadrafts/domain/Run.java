@@ -15,6 +15,7 @@ import lombok.Data;
 public class Run {
 
 	private String id;
+	private String date;
 
 	@JsonProperty(value = "Choices")
 	private List<Choice> choices = new ArrayList<>();
