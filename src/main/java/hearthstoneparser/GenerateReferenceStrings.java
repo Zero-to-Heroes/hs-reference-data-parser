@@ -14,7 +14,7 @@ public class GenerateReferenceStrings {
 
 		// Read the english version of the file
 		populateReferenceStrings(referenceStrings, "en", "enUS");
-		populateReferenceStrings(referenceStrings, "fr", "frFR");
+		// populateReferenceStrings(referenceStrings, "fr", "frFR");
 
 		System.out.println(referenceStrings);
 	}

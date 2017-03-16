@@ -45,14 +45,15 @@ public class GenerateCardData {
 				String id = card.getString("id");
 
 				// Put the localization info
-				JSONObject frLocalization = new JSONObject();
-				frLocalization.put("name", nameLoc.getString("frFR"));
-				card.put("fr", frLocalization);
+				// JSONObject frLocalization = new JSONObject();
+				// frLocalization.put("name", nameLoc.getString("frFR"));
+				// card.put("fr", frLocalization);
 				card.put("name", nameLoc.getString("enUS"));
 
 				JSONObject originalText = (JSONObject) card.remove("text");
-				if (originalText != null) {
-					frLocalization.put("text", originalText.getString("frFR"));
+				if (originalText != null && originalText.has("enUS")) {
+					// frLocalization.put("text",
+					// originalText.getString("frFR"));
 					card.put("text", originalText.getString("enUS"));
 				}
 
