@@ -1,8 +1,10 @@
 package hearthstoneparser;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
@@ -18,8 +20,10 @@ public class GenerateCardData {
 	public static void main(String[] args) throws Exception {
 		JSONParser parser = new JSONParser();
 
-		JSONArray referenceCards = new JSONArray(
-				((org.json.simple.JSONArray) parser.parse(new FileReader("ref_allCards.json"))).toJSONString());
+		URL referenceUrl = new URL("https://s3.amazonaws.com/com.zerotoheroes/plugins/hearthstone/cardsjson/22611/all/cards.json");
+		BufferedReader referenceIn = new BufferedReader(new InputStreamReader(referenceUrl.openStream(), "UTF-8"));
+		JSONArray referenceCards = new JSONArray(((org.json.simple.JSONArray) parser.parse(referenceIn)).toJSONString());
+
 		JSONObject imageMap = new JSONObject(
 				((org.json.simple.JSONObject) parser.parse(new FileReader("ref_imageMap.json"))).toJSONString());
 		JSONObject goldImageMap = new JSONObject(
@@ -37,9 +41,7 @@ public class GenerateCardData {
 				if (!card.has("name")) {
 					continue;
 				}
-				// System.out.println("do the card " +
-				// card.getJSONObject("name").getString("enUS") + " " +
-				// cardObject);
+				System.out.println("Considering card: " + card.getString("id") + " - " + card.getJSONObject("name").getString("enUS") + " " + cardObject);
 				JSONObject nameLoc = card.getJSONObject("name");
 				card.remove("name");
 				String id = card.getString("id");
@@ -63,12 +65,13 @@ public class GenerateCardData {
 				card.remove("playRequirements");
 				card.remove("texture");
 				card.remove("dust");
-				card.remove("race");
-				card.remove("mechanics");
+//				card.remove("race");
+//				card.remove("mechanics");
+				card.remove("collectionText");
 				card.remove("targetingArrowText");
 				card.remove("flavor");
 				card.remove("textInPlay");
-				card.remove("entourage");
+//				card.remove("entourage");
 
 				// And capitalize the data that is now in full uppercase
 				if (card.has("playerClass")) {
@@ -78,7 +81,7 @@ public class GenerateCardData {
 					card.put("rarity", WordUtils.capitalizeFully(card.getString("rarity")));
 				}
 				if (card.has("set")) {
-					card.put("set", WordUtils.capitalizeFully(card.getString("set")));
+					card.put("set", WordUtils.capitalizeFully(String.valueOf(card.get("set"))));
 				}
 				if (card.has("type")) {
 					card.put("type", WordUtils.capitalizeFully(card.getString("type")));
@@ -86,73 +89,109 @@ public class GenerateCardData {
 
 				// Now handle images
 				String imageName = id + ".png";
+				String spec = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/" + imageName + "?12576";
 
-				if (!imageMap.has(id)) {
-					String spec = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/" + imageName + "?12576";
-					try {
-						// Download the card
-						URL url = new URL(spec);
-						InputStream in = url.openStream();
-						Files.copy(in, Paths.get("images/en/" + imageName));
+//				if (!imageMap.has(id)) {
+				try {
+					if (Paths.get("images/en/old/" + id + ".png").toFile().exists()) {
+						throw new FileAlreadyExistsException(Paths.get("images/old/" + id + ".png").toString());
+					}
+					if (Paths.get("images/en/new/" + id + ".png").toFile().exists()) {
+						throw new FileAlreadyExistsException(Paths.get("images/new/" + id + ".png").toString());
+					}
+					if (Paths.get("images/en/new_LOOT/" + id + ".png").toFile().exists()) {
+						throw new FileAlreadyExistsException(Paths.get("images/new_LOOT/" + id + ".png").toString());
+					}
+					if (Paths.get("images/en/new_KFT/" + id + ".png").toFile().exists()) {
+						throw new FileAlreadyExistsException(Paths.get("images/new_KFT/" + id + ".png").toString());
+					}
+					if (Paths.get("images/en/new_UNG/" + id + ".png").toFile().exists()) {
+						throw new FileAlreadyExistsException(Paths.get("images/new_UNG/" + id + ".png").toString());
+					}
+					// Download the card
+					URL url = new URL(spec);
+					InputStream in = url.openStream();
+					Files.copy(in, Paths.get("images/en/" + imageName));
+					long imageSize = Files.size(Paths.get("images/en/" + imageName));
+					if (imageSize > 0) {
 						// Update the card
 						card.put("cardImage", imageName);
 						imageMap.put(id, imageName);
 						in.close();
 						System.out.println("Downloaded card for " + id);
 					}
-					catch (FileAlreadyExistsException e) {
-						// Update the card
-						card.put("cardImage", imageName);
-						imageMap.put(id, imageName);
-					}
-					catch (Exception e) {
-						System.out.println("Image does not exist " + imageName + " at path " + spec);
-						// e.printStackTrace();
+					else {
+						Paths.get("images/en/" + imageName).toFile().delete();
+						System.out.println("\tEmpty image, skipping");
 					}
 				}
-				else {
-					// This means we have already downloaded the image
-					card.put("cardImage", imageName);
+				catch (FileAlreadyExistsException e) {
+					// Update the card
+					 System.out.println("\tImage already exists for: " + id);
+					 card.put("cardImage", imageName);
+					imageMap.put(id, imageName);
 				}
+				catch (Exception e) {
+					System.out.println("Image does not exist " + imageName + " at path " + spec);
+					// e.printStackTrace();
+				}
+//				}
+//				else {
+//					// This means we have already downloaded the image
+//					card.put("cardImage", imageName);
+//				}
 
 				imageName = id + ".gif";
-				if (!goldImageMap.has(id)) {
-					// Get the golden image
-					System.out.println("Trying to get golden image for " + id);
-					String spec = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/" + id
+				spec = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/" + id
 							+ "_premium.gif" + "?12576";
 
-					try {
-						// Download the card
-						URL url = new URL(spec);
-						InputStream in = url.openStream();
-						Files.copy(in, Paths.get("images/en/golden/" + id + ".gif"));
-						long imageSize = Files.size(Paths.get("images/en/golden/" + id + ".gif"));
-						if (imageSize > 0) {
-							// Update the card
-							card.put("goldenImage", id + ".gif");
-							goldImageMap.put(id, id + ".gif");
-						}
-						else {
-							System.out.println("\tEmpty image, skipping");
-						}
-						in.close();
+//				if (!goldImageMap.has(id)) {
+				try {
+					if (Paths.get("images/golden/" + id + ".gif").toFile().exists()) {
+						throw new FileAlreadyExistsException(Paths.get("images/golden/" + id + ".gif").toString());
 					}
-					catch (FileAlreadyExistsException e) {
+					if (Paths.get("images/golden/old/" + id + ".gif").toFile().exists()) {
+						throw new FileAlreadyExistsException(Paths.get("images/golden/old/" + id + ".gif").toString());
+					}
+					if (Paths.get("images/golden/new/" + id + ".gif").toFile().exists()) {
+						throw new FileAlreadyExistsException(Paths.get("images/golden/new" + id + ".gif").toString());
+					}
+					if (Paths.get("images/golden/new_UNG/" + id + ".gif").toFile().exists()) {
+						throw new FileAlreadyExistsException(Paths.get("images/golden/new_UNG" + id + ".gif").toString());
+					}
+					// Get the golden image
+					// Download the card
+					URL url = new URL(spec);
+					InputStream in = url.openStream();
+					Files.copy(in, Paths.get("images/golden/" + id + ".gif"));
+					long imageSize = Files.size(Paths.get("images/golden/" + id + ".gif"));
+					if (imageSize > 0) {
 						// Update the card
-						// System.out.println("\tGolden image already exists
-						// for: " + id);
 						card.put("goldenImage", id + ".gif");
 						goldImageMap.put(id, id + ".gif");
+						System.out.println("Golden image downloaded for " + id);
 					}
-					catch (Exception e) {
-						System.out.println("Image does not exist " + imageName + " at path " + spec);
-						// e.printStackTrace();
+					else {
+						Paths.get("images/golden/" + id + ".gif").toFile().delete();
+						System.out.println("\tEmpty image, skipping");
 					}
+					in.close();
 				}
-				else {
-					card.put("goldenImage", imageName);
+				catch (FileAlreadyExistsException e) {
+					// Update the card
+					 System.out.println("\tGolden image already exists for: " + id);
+					card.put("goldenImage", id + ".gif");
+					goldImageMap.put(id, id + ".gif");
 				}
+				catch (Exception e) {
+					System.out.println("Golden mage does not exist " + imageName + " at path " + spec);
+					// e.printStackTrace();
+				}
+//				}
+//				else {
+//					// This means we have already downloaded the image
+//					card.put("goldenImage", id + ".gif");
+//				}
 
 				// imageName = id + ".jpg";
 				// if (!cardsArtMap.has(id)) {
