@@ -1,6 +1,7 @@
 package hearthstoneparser;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStream;
@@ -9,7 +10,15 @@ import java.net.URL;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,7 +29,7 @@ public class GenerateCardData {
 	public static void main(String[] args) throws Exception {
 		JSONParser parser = new JSONParser();
 
-		URL referenceUrl = new URL("https://s3.amazonaws.com/com.zerotoheroes/plugins/hearthstone/cardsjson/22611/all/cards.json");
+		URL referenceUrl = new URL("https://s3.amazonaws.com/com.zerotoheroes/plugins/hearthstone/cardsjson/23966/all/cards.json");
 		BufferedReader referenceIn = new BufferedReader(new InputStreamReader(referenceUrl.openStream(), "UTF-8"));
 		JSONArray referenceCards = new JSONArray(((org.json.simple.JSONArray) parser.parse(referenceIn)).toJSONString());
 
@@ -30,6 +39,15 @@ public class GenerateCardData {
 				((org.json.simple.JSONObject) parser.parse(new FileReader("ref_goldImageMap.json"))).toJSONString());
 		JSONObject cardsArtMap = new JSONObject(
 				((org.json.simple.JSONObject) parser.parse(new FileReader("ref_cardsArtMap.json"))).toJSONString());
+
+		// Build the list of all audio files
+        List<String> audioClips = Arrays.stream(new File("D:\\Dev\\Projects\\HearthSim\\python-unitypack\\out\\audio").listFiles())
+                .filter(File::isFile)
+                .map(File::getName)
+                .filter(clip -> clip.startsWith("VO_"))
+                .collect(Collectors.toList());
+        System.out.println(audioClips);
+		Pattern audioFilePattern = Pattern.compile("VO_(?:.*)_(.*)_(.*)\\.ogg", Pattern.CASE_INSENSITIVE);
 
 		FileWriter cardsWriter = new FileWriter("out_cardsWithImages.json", false);
 		System.out.println("init done " + referenceCards.length());
@@ -45,6 +63,26 @@ public class GenerateCardData {
 				JSONObject nameLoc = card.getJSONObject("name");
 				card.remove("name");
 				String id = card.getString("id");
+
+				JSONObject audio = new JSONObject();
+                for (Iterator<String> iter = audioClips.iterator(); iter.hasNext(); ) {
+                    String fileName = iter.next();
+                    if (fileName.contains(id)) {
+						System.out.println("Matching " + fileName);
+						Matcher matcher = audioFilePattern.matcher(fileName);
+						matcher.find();
+						audio.put(
+								StringUtils.capitalize(matcher.group(1).toLowerCase())
+										+ "_"
+										+ StringUtils.capitalize(matcher.group(2).toLowerCase()),
+								fileName);
+                        iter.remove();
+                    }
+                }
+                if (audio.length() > 0) {
+					card.put("audio", audio);
+				}
+//                System.out.println("Added audio: " + audio);
 
 				// Put the localization info
 				// JSONObject frLocalization = new JSONObject();
@@ -238,10 +276,11 @@ public class GenerateCardData {
 				// System.out.println(card);
 				cardsWriter.write(cardObject.toString() + ",");
 			}
-			System.out.println(imageMap);
-			System.out.println(goldImageMap);
-			System.out.println(cardsArtMap);
+//			System.out.println(imageMap);
+//			System.out.println(goldImageMap);
+//			System.out.println(cardsArtMap);
 
+			System.out.println(audioClips);
 			System.out.println(referenceCards);
 
 			cardsWriter.close();
