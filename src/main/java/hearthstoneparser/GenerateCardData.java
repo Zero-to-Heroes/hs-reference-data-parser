@@ -56,13 +56,14 @@ public class GenerateCardData {
 
 			for (Object cardObject : referenceCards) {
 				card = (JSONObject) cardObject;
+				String id = card.getString("id");
 				if (!card.has("name")) {
 					continue;
 				}
 				System.out.println("Considering card: " + card.getString("id") + " - " + card.getJSONObject("name").getString("enUS") + " " + cardObject);
 				JSONObject nameLoc = card.getJSONObject("name");
 				card.remove("name");
-				String id = card.getString("id");
+				card.put("name", nameLoc.getString("enUS"));
 
 				JSONObject audio = new JSONObject();
                 for (Iterator<String> iter = audioClips.iterator(); iter.hasNext(); ) {
@@ -82,13 +83,6 @@ public class GenerateCardData {
                 if (audio.length() > 0) {
 					card.put("audio", audio);
 				}
-//                System.out.println("Added audio: " + audio);
-
-				// Put the localization info
-				// JSONObject frLocalization = new JSONObject();
-				// frLocalization.put("name", nameLoc.getString("frFR"));
-				// card.put("fr", frLocalization);
-				card.put("name", nameLoc.getString("enUS"));
 
 				JSONObject originalText = (JSONObject) card.remove("text");
 				if (originalText != null && originalText.has("enUS")) {
@@ -97,21 +91,26 @@ public class GenerateCardData {
 					card.put("text", originalText.getString("enUS"));
 				}
 
+				if (card.has("flavor")) {
+					card.put("flavor", card.getJSONObject("flavor").getString("enUS"));
+				}
 				// Remove all the big chunks of useless / localization data
 				card.remove("howToEarn");
 				card.remove("howToEarnGolden");
 				card.remove("playRequirements");
 				card.remove("texture");
-				card.remove("dust");
+//				card.remove("dust");
 //				card.remove("race");
 //				card.remove("mechanics");
 				card.remove("collectionText");
 				card.remove("targetingArrowText");
-				card.remove("flavor");
 				card.remove("textInPlay");
 //				card.remove("entourage");
 
 				// And capitalize the data that is now in full uppercase
+				if (card.has("cardClass")) {
+					card.put("playerClass", WordUtils.capitalizeFully(card.getString("cardClass")));
+				}
 				if (card.has("playerClass")) {
 					card.put("playerClass", WordUtils.capitalizeFully(card.getString("playerClass")));
 				}
