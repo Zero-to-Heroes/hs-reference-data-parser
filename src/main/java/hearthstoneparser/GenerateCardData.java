@@ -1,5 +1,11 @@
 package hearthstoneparser;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.WordUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,7 +16,6 @@ import java.net.URL;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -18,18 +23,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.WordUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 public class GenerateCardData {
 
 	public static void main(String[] args) throws Exception {
 		JSONParser parser = new JSONParser();
 
-		URL referenceUrl = new URL("https://s3.amazonaws.com/com.zerotoheroes/plugins/hearthstone/cardsjson/23966/all/cards.json");
+		URL referenceUrl = new URL("https://s3-us-west-2.amazonaws.com/static.zerotoheroes.com/hearthstone/jsoncards/25252/all/cards.json");
 		BufferedReader referenceIn = new BufferedReader(new InputStreamReader(referenceUrl.openStream(), "UTF-8"));
 		JSONArray referenceCards = new JSONArray(((org.json.simple.JSONArray) parser.parse(referenceIn)).toJSONString());
 
@@ -41,7 +40,7 @@ public class GenerateCardData {
 				((org.json.simple.JSONObject) parser.parse(new FileReader("ref_cardsArtMap.json"))).toJSONString());
 
 		// Build the list of all audio files
-        List<String> audioClips = Arrays.stream(new File("D:\\Dev\\Projects\\HearthSim\\python-unitypack\\out\\audio").listFiles())
+        List<String> audioClips = Arrays.stream(new File("G:\\Source\\hearthsim\\python-unitypack\\out\\audio").listFiles())
                 .filter(File::isFile)
                 .map(File::getName)
                 .filter(clip -> clip.startsWith("VO_"))
