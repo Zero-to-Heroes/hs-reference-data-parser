@@ -10,96 +10,90 @@ import org.json.simple.parser.JSONParser;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
+	public static final boolean FETCH_IMAGES = true;
+
 	public static void main(String[] args) throws Exception {
 		JSONParser parser = new JSONParser();
-
-		URL referenceUrl = new URL("https://s3-us-west-2.amazonaws.com/static.zerotoheroes.com/hearthstone/jsoncards/25770/all/cards.json");
-		BufferedReader referenceIn = new BufferedReader(new InputStreamReader(referenceUrl.openStream(), "UTF-8"));
+		BufferedReader referenceIn = new BufferedReader(new InputStreamReader(
+				GenerateCardData.class.getResourceAsStream("cards.json"),
+				"UTF-8"));
 		JSONArray referenceCards = new JSONArray(((org.json.simple.JSONArray) parser.parse(referenceIn)).toJSONString());
 
+		BufferedReader soundEffectsIn = new BufferedReader(new InputStreamReader(
+				GenerateCardData.class.getResourceAsStream("sound_effects.json"),
+				"UTF-8"));
+		JSONObject soundEffects = new JSONObject(((org.json.simple.JSONObject) parser.parse(soundEffectsIn)).toJSONString());
+
 		// Build the list of all audio files
-        List<String> audioClips = Arrays.stream(new File("D:\\Dev\\Projects\\HearthSim\\python-unitypack\\out\\audio").listFiles())
+		List<String> audioClips = Arrays.stream(new File("D:\\Dev\\Projects\\HearthSim\\python-unitypack\\out\\audio").listFiles())
                 .filter(File::isFile)
                 .map(File::getName)
-                .filter(clip -> clip.startsWith("VO_"))
                 .collect(Collectors.toList());
-//        System.out.println(audioClips);
-		Pattern audioFilePattern = Pattern.compile("VO_(?:.*)_(.*)_(.*)\\.ogg", Pattern.CASE_INSENSITIVE);
+        System.out.println("Total audio clips: " + audioClips.size());
 
-		List<String> possiblePaths = Lists.newArrayList(
-				"images/en/old/",
-				"images/en/new/",
-				"images/en/new_LOOT/",
-				"images/en/new_KFT/",
-				"images/en/new_UNG/",
-				"images/en/BOT/"
-		);
+//		List<String> possiblePaths = Lists.newArrayList(
+//				"images/en/old/",
+//				"images/en/new/",
+//				"images/en/new_LOOT/",
+//				"images/en/new_KFT/",
+//				"images/en/new_UNG/",
+//				"images/en/BOT/"
+//		);
 
-		FileWriter cardsWriter = new FileWriter("out_cardsWithImages.json", false);
-		System.out.println("init done " + referenceCards.length());
+		Set<String> existingImages = Arrays.stream(new File("images").listFiles())
+				.map(file -> file.isDirectory() ? Arrays.asList(file.listFiles()) : Lists.newArrayList(file))
+				.flatMap(List::stream)
+				.map(file -> file.isDirectory() ? Arrays.asList(file.listFiles()) : Lists.newArrayList(file))
+				.flatMap(List::stream)
+				.map(File::getName)
+				.collect(Collectors.toSet());
+
+		System.out.println("init done " + referenceCards.length() + ", " + soundEffects.length() + ", " + audioClips.size());
 		JSONObject card = null;
 		try {
-
 			for (Object cardObject : referenceCards) {
 				card = (JSONObject) cardObject;
 				String id = card.getString("id");
 				if (!card.has("name")) {
 					continue;
 				}
-//				System.out.println("Considering card: " + card.getString("id") + " - " + card.getJSONObject("name").getString("enUS") + " " + cardObject);
 				JSONObject nameLoc = card.getJSONObject("name");
 				card.remove("name");
 				card.put("name", nameLoc.getString("enUS"));
 
-				JSONObject audio = new JSONObject();
-                for (Iterator<String> iter = audioClips.iterator(); iter.hasNext(); ) {
-                    String fileName = iter.next();
-                    if (fileName.contains(id)) {
-//						System.out.println("Matching " + fileName);
-						Matcher matcher = audioFilePattern.matcher(fileName);
-						matcher.find();
-						audio.put(
-								StringUtils.capitalize(matcher.group(1).toLowerCase())
-										+ "_"
-										+ StringUtils.capitalize(matcher.group(2).toLowerCase()),
-								fileName);
-                        iter.remove();
-                    }
-                }
-                if (audio.length() > 0) {
-					card.put("audio", audio);
+				if (soundEffects.has(id)) {
+					card.put("audio", soundEffects.getJSONObject(id));
+					for (String key : soundEffects.getJSONObject(id).keySet()) {
+						for (int i = 0; i < soundEffects.getJSONObject(id).getJSONArray(key).length(); i++) {
+							String audioFilename = (String) soundEffects.getJSONObject(id).getJSONArray(key).get(i);
+							if (!audioClips.contains(audioFilename)) {
+								System.err.println("Audio file not present: " + audioFilename + " for " + id);
+							}
+						}
+					}
 				}
 
 				JSONObject originalText = (JSONObject) card.remove("text");
 				if (originalText != null && originalText.has("enUS")) {
-					// frLocalization.put("text",
-					// originalText.getString("frFR"));
 					card.put("text", originalText.getString("enUS"));
 				}
 
 				if (card.has("flavor")) {
 					card.put("flavor", card.getJSONObject("flavor").getString("enUS"));
 				}
-				// Remove all the big chunks of useless / localization data
 				card.remove("howToEarn");
 				card.remove("howToEarnGolden");
 				card.remove("playRequirements");
@@ -108,7 +102,6 @@ public class GenerateCardData {
 				card.remove("targetingArrowText");
 				card.remove("textInPlay");
 
-				// And capitalize the data that is now in full uppercase
 				if (card.has("cardClass")) {
 					card.put("playerClass", WordUtils.capitalizeFully(card.getString("cardClass")));
 				}
@@ -126,15 +119,23 @@ public class GenerateCardData {
 				}
 
 				// Now handle images
-				String imageName = id + ".png";
-//				String spec = "http://media.services.zam.com/v1/media/byName/hs/cards/enus/" + imageName + "?12576";
+				if (!FETCH_IMAGES) {
+					continue;
+				}
 
+				String imageName = id + ".png";
 				try {
-					for (String possiblePath : possiblePaths) {
-						if (Paths.get(possiblePath + id + ".png").toFile().exists()) {
-							throw new FileAlreadyExistsException(Paths.get(possiblePath + id + ".png").toString());
-						}
+					if (existingImages.contains(imageName)) {
+						System.out.println("File exists: " + imageName);
+						card.put("cardImage", imageName);
+						continue;
 					}
+					System.out.println("File doesn't exist, moving on: " + imageName);
+//					for (String possiblePath : possiblePaths) {
+//						if (Paths.get(possiblePath + id + ".png").toFile().exists()) {
+//							throw new FileAlreadyExistsException(Paths.get(possiblePath + id + ".png").toString());
+//						}
+//					}
 					// Download the card
 					InputStream in = getInputStream(card);
 					Files.copy(in, Paths.get("images/en/" + imageName));
@@ -206,17 +207,13 @@ public class GenerateCardData {
 //					System.out.println("Golden mage does not exist " + imageName + " at path " + spec);
 //					// e.printStackTrace();
 //				}
-				cardsWriter.write(cardObject.toString() + ",");
 			}
 //			System.out.println(imageMap);
 //			System.out.println(goldImageMap);
 //			System.out.println(cardsArtMap);
 
-			System.out.println(audioClips);
+//			System.out.println(audioClips);
 			System.out.println(referenceCards);
-
-			cardsWriter.close();
-
 		}
 		catch (Exception e) {
 			e.printStackTrace();
