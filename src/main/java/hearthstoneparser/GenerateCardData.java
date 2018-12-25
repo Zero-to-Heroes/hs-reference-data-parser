@@ -17,13 +17,23 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
-	public static final boolean FETCH_IMAGES = true;
+	private static final boolean FETCH_IMAGES = false;
+	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\Source\\hearthsim\\python-unitypack\\out\\audio";
+	private static final Map<String, String> SET_CODES = buildSetCodes();
+
+	private static Map<String,String> buildSetCodes() {
+		Map<String, String> result = new HashMap<>();
+		result.put("1129", "rumble");
+		return result;
+	}
 
 	public static void main(String[] args) throws Exception {
 		JSONParser parser = new JSONParser();
@@ -38,26 +48,16 @@ public class GenerateCardData {
 		JSONObject soundEffects = new JSONObject(((org.json.simple.JSONObject) parser.parse(soundEffectsIn)).toJSONString());
 
 		// Build the list of all audio files
-		List<String> audioClips = Arrays.stream(new File("D:\\Dev\\Projects\\HearthSim\\python-unitypack\\out\\audio").listFiles())
+		List<String> audioClips = Arrays.stream(new File(PYTHON_UNITYPACK_AUDIO_OUT_DIRE).listFiles())
                 .filter(File::isFile)
                 .map(File::getName)
                 .collect(Collectors.toList());
         System.out.println("Total audio clips: " + audioClips.size());
 
-//		List<String> possiblePaths = Lists.newArrayList(
-//				"images/en/old/",
-//				"images/en/new/",
-//				"images/en/new_LOOT/",
-//				"images/en/new_KFT/",
-//				"images/en/new_UNG/",
-//				"images/en/BOT/"
-//		);
-
 		Set<String> existingImages = Arrays.stream(new File("images").listFiles())
-				.map(file -> file.isDirectory() ? Arrays.asList(file.listFiles()) : Lists.newArrayList(file))
-				.flatMap(List::stream)
-				.map(file -> file.isDirectory() ? Arrays.asList(file.listFiles()) : Lists.newArrayList(file))
-				.flatMap(List::stream)
+				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(File::getName)
 				.collect(Collectors.toSet());
 
@@ -94,13 +94,6 @@ public class GenerateCardData {
 				if (card.has("flavor")) {
 					card.put("flavor", card.getJSONObject("flavor").getString("enUS"));
 				}
-				card.remove("howToEarn");
-				card.remove("howToEarnGolden");
-				card.remove("playRequirements");
-				card.remove("texture");
-				card.remove("collectionText");
-				card.remove("targetingArrowText");
-				card.remove("textInPlay");
 
 				if (card.has("cardClass")) {
 					card.put("playerClass", WordUtils.capitalizeFully(card.getString("cardClass")));
@@ -112,7 +105,11 @@ public class GenerateCardData {
 					card.put("rarity", WordUtils.capitalizeFully(card.getString("rarity")));
 				}
 				if (card.has("set")) {
-					card.put("set", WordUtils.capitalizeFully(String.valueOf(card.get("set"))));
+					String set = String.valueOf(card.get("set"));
+					if (SET_CODES.containsKey(set)) {
+						set = SET_CODES.get(set);
+					}
+					card.put("set", WordUtils.capitalizeFully(set));
 				}
 				if (card.has("type")) {
 					card.put("type", WordUtils.capitalizeFully(card.getString("type")));
@@ -120,6 +117,9 @@ public class GenerateCardData {
 
 				// Now handle images
 				if (!FETCH_IMAGES) {
+					continue;
+				}
+				if (!id.startsWith("TRL")) {
 					continue;
 				}
 
@@ -157,7 +157,7 @@ public class GenerateCardData {
 				}
 				catch (Exception e) {
 //					System.out.println("Image does not exist " + imageName + " at path " + e.getMessage());
-					if (imageName.startsWith("BOT")) {
+					if (imageName.startsWith("TRL")) {
 						System.err.println("Could not find Boomsday image! " + e.getMessage());
 					}
 					// e.printStackTrace();
@@ -222,17 +222,25 @@ public class GenerateCardData {
 		System.out.println("finished processing cards");
 	}
 
+	private static List<File> flattenDirectoryStructure(File file) {
+		return file.isDirectory() ? Arrays.asList(file.listFiles()) : Lists.newArrayList(file);
+	}
+
 	/** Try various combinations to download the image */
 	private static InputStream getInputStream(JSONObject card) throws Exception {
 		List<String> possibleSpecs = Lists.newArrayList(
+				"2018/11/",
+				"2018/10/",
 				"2018/08/",
 				"2018/07/"
-		);
+				);
 		String baseCardName = new Slugify().slugify(card.getString("name")
 				.replaceAll("'", "")
 				.replaceAll("\\.", ""));
 		List<String> possibleCardNames = Lists.newArrayList(
 				baseCardName,
+				baseCardName + "-card-art-300x429",
+				baseCardName + "-temp-card-art-300x429",
 				StringUtils.capitalize(baseCardName),
 				WordUtils.capitalize(baseCardName, new char[] {'-'}));
 		for (String cardName : possibleCardNames) {
