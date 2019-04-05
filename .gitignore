@@ -8,3 +8,9 @@
 /target/classes/com/zerotoheroes/hsgameparser/db
 /images
 /.idea
+/target/classes/hearthstoneparser/cards.json
+/target/hearthstoneparser-0.0.1-SNAPSHOT.jar
+/target/maven-archiver/pom.properties
+/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst

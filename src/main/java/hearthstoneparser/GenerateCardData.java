@@ -25,13 +25,13 @@ import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
-	private static final boolean FETCH_IMAGES = false;
+	private static final boolean FETCH_IMAGES = true;
 	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\Source\\hearthsim\\python-unitypack\\out\\audio";
 	private static final Map<String, String> SET_CODES = buildSetCodes();
 
 	private static Map<String,String> buildSetCodes() {
 		Map<String, String> result = new HashMap<>();
-		result.put("1129", "rumble");
+		result.put("1129", "Troll");
 		return result;
 	}
 
@@ -119,7 +119,7 @@ public class GenerateCardData {
 				if (!FETCH_IMAGES) {
 					continue;
 				}
-				if (!id.startsWith("TRL")) {
+				if (!id.startsWith("DAL")) {
 					continue;
 				}
 
@@ -131,11 +131,6 @@ public class GenerateCardData {
 						continue;
 					}
 					System.out.println("File doesn't exist, moving on: " + imageName);
-//					for (String possiblePath : possiblePaths) {
-//						if (Paths.get(possiblePath + id + ".png").toFile().exists()) {
-//							throw new FileAlreadyExistsException(Paths.get(possiblePath + id + ".png").toString());
-//						}
-//					}
 					// Download the card
 					InputStream in = getInputStream(card);
 					Files.copy(in, Paths.get("images/en/" + imageName));
@@ -157,8 +152,8 @@ public class GenerateCardData {
 				}
 				catch (Exception e) {
 //					System.out.println("Image does not exist " + imageName + " at path " + e.getMessage());
-					if (imageName.startsWith("TRL")) {
-						System.err.println("Could not find Boomsday image! " + e.getMessage());
+					if (imageName.startsWith("DAL")) {
+						System.err.println("Could not find Dalaran image! " + e.getMessage());
 					}
 					// e.printStackTrace();
 				}
@@ -232,13 +227,15 @@ public class GenerateCardData {
 				"2018/11/",
 				"2018/10/",
 				"2018/08/",
-				"2018/07/"
+				"2019/04/",
+				"2019/03/"
 				);
 		String baseCardName = new Slugify().slugify(card.getString("name")
 				.replaceAll("'", "")
 				.replaceAll("\\.", ""));
 		List<String> possibleCardNames = Lists.newArrayList(
 				baseCardName,
+				baseCardName + "-300x414",
 				baseCardName + "-card-art-300x429",
 				baseCardName + "-temp-card-art-300x429",
 				StringUtils.capitalize(baseCardName),
