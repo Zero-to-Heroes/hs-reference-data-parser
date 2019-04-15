@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
-	private static final boolean FETCH_IMAGES = true;
+	private static final boolean FETCH_IMAGES = false;
 	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\Source\\hearthsim\\python-unitypack\\out\\audio";
 	private static final Map<String, String> SET_CODES = buildSetCodes();
 
