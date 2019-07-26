@@ -1,12 +1,14 @@
 /.classpath
 /.project
 /.settings
-*.png
+**/*.png
+**/*.jpg
 /target/classes/hearthstoneparser/*.class
 /drafts
 /target/classes/hearthstoneparser/arenadrafts
 /target/classes/com/zerotoheroes/hsgameparser/db
 /images
+/images_old
 /.idea
 /target/classes/hearthstoneparser/cards.json
 /target/hearthstoneparser-0.0.1-SNAPSHOT.jar
