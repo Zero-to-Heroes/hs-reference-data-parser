@@ -27,8 +27,8 @@ import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
-	private static final boolean FETCH_IMAGES = true;
-	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\Source\\hearthsim\\python-unitypack\\out\\audio2";
+	private static final boolean FETCH_IMAGES = false;
+	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\hearthsim\\unitypack\\out\\audio2";
 	private static final Map<String, String> SET_CODES = buildSetCodes();
 
 	private static Map<String,String> buildSetCodes() {
@@ -101,6 +101,11 @@ public class GenerateCardData {
 
 				if (card.has("flavor")) {
 					card.put("flavor", card.getJSONObject("flavor").getString("enUS"));
+				}
+
+				if (card.has("race")) {
+					String newRace = card.getString("race").equals("MECHANICAL") ? "MECH" : card.getString("race");
+					card.put("race", newRace);
 				}
 
 				if (card.has("cardClass")) {
