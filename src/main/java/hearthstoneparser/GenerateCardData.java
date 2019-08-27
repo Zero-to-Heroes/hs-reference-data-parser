@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
-	private static final boolean FETCH_IMAGES = false;
+	private static final boolean FETCH_IMAGES = true;
 	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\hearthsim\\unitypack\\out\\audio2";
 	private static final Map<String, String> SET_CODES = buildSetCodes();
 
@@ -57,6 +57,13 @@ public class GenerateCardData {
         System.out.println("Total audio clips: " + audioClips.size());
 
 		Set<String> existingImages = Arrays.stream(new File("images").listFiles())
+				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+				.map(File::getName)
+				.collect(Collectors.toSet());
+
+		Set<String> existingImages512 = Arrays.stream(new File("images512").listFiles())
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
@@ -137,40 +144,58 @@ public class GenerateCardData {
 //				}
 
 				String imageName = id + ".png";
+				if (existingImages.contains(imageName) && existingImages512.contains(imageName)) {
+					System.out.println("File exists: " + imageName);
+					card.put("cardImage", imageName);
+					continue;
+				}
+				System.out.println("File doesn't exist, moving on: " + imageName);
 				try {
-					if (existingImages.contains(imageName)) {
-						System.out.println("File exists: " + imageName);
-						card.put("cardImage", imageName);
-						continue;
-					}
-					System.out.println("File doesn't exist, moving on: " + imageName);
 					// Download the card
-					InputStream in = getInputStream(card);
-					Files.copy(in, Paths.get("images/" + imageName));
-					long imageSize = Files.size(Paths.get("images/" + imageName));
-					if (imageSize > 0) {
-						// Update the card
-						card.put("cardImage", imageName);
-						in.close();
-						System.out.println("Downloaded card for " + id);
+					if (!existingImages.contains(imageName)) {
+						InputStream in = getInputStream(card);
+						Files.copy(in, Paths.get("images/" + imageName));
+						long imageSize = Files.size(Paths.get("images/" + imageName));
+						if (imageSize > 0) {
+							// Update the card
+							card.put("cardImage", imageName);
+							in.close();
+							System.out.println("Downloaded card for " + id);
+						}
+						else {
+							Paths.get("images/" + imageName).toFile().delete();
+							System.out.println("Empty image: " + imageName);
+						}
 					}
-					else {
-						Paths.get("images/" + imageName).toFile().delete();
-						System.out.println("Empty image: " +imageName);
+				} catch (FileAlreadyExistsException e) {
+					card.put("cardImage", imageName);
+				} catch (Exception e) {
+					System.err.println("Could not find image! " + e.getMessage());
+				}
+				try {
+					if (!existingImages512.contains(imageName)) {
+						InputStream in = getInputStream512(card);
+						Files.copy(in, Paths.get("images512/" + imageName));
+						long imageSize = Files.size(Paths.get("images512/" + imageName));
+						if (imageSize > 0) {
+							// Update the card
+							card.put("cardImage", imageName);
+							in.close();
+							System.out.println("Downloaded 512 card for " + id);
+						}
+						else {
+							Paths.get("images512/" + imageName).toFile().delete();
+							System.out.println("Empty 512 image: " + imageName);
+						}
 					}
+				} catch (FileAlreadyExistsException e) {
+					card.put("cardImage", imageName);
+				} catch (Exception e) {
+					System.err.println("Could not find 512 image! " + e.getMessage());
 				}
-				catch (FileAlreadyExistsException e) {
-					 card.put("cardImage", imageName);
-				}
-				catch (Exception e) {
-					if (imageName.startsWith("DAL")) {
-						System.err.println("Could not find Dalaran image! " + e.getMessage());
-					}
-				}
+				System.out.println(referenceCards);
 			}
-			System.out.println(referenceCards);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.err.println("Issue processing card " + card);
 		}
@@ -182,34 +207,65 @@ public class GenerateCardData {
 	}
 
 	private static InputStream getInputStream(JSONObject card) throws Exception {
-        // Create a new trust manager that trust all certificates
-        TrustManager[] trustAllCerts = new TrustManager[]{
-                new X509TrustManager() {
-                    public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                        return null;
-                    }
-                    public void checkClientTrusted(
-                            java.security.cert.X509Certificate[] certs, String authType) {
-                    }
-                    public void checkServerTrusted(
-                            java.security.cert.X509Certificate[] certs, String authType) {
-                    }
-                }
-        };
+		// Create a new trust manager that trust all certificates
+		TrustManager[] trustAllCerts = new TrustManager[]{
+				new X509TrustManager() {
+					public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+						return null;
+					}
+					public void checkClientTrusted(
+							java.security.cert.X509Certificate[] certs, String authType) {
+					}
+					public void checkServerTrusted(
+							java.security.cert.X509Certificate[] certs, String authType) {
+					}
+				}
+		};
 
-        // Activate the new trust manager
-        try {
-            SSLContext sc = SSLContext.getInstance("SSL");
-            sc.init(null, trustAllCerts, new java.security.SecureRandom());
-            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-        } catch (Exception e) {
-            System.err.println("Caught exception " + e.getMessage());
-        }
+		// Activate the new trust manager
+		try {
+			SSLContext sc = SSLContext.getInstance("SSL");
+			sc.init(null, trustAllCerts, new java.security.SecureRandom());
+			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		} catch (Exception e) {
+			System.err.println("Caught exception " + e.getMessage());
+		}
 
-        // And as before now you can use URL and URLConnection
-        System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0");
-        URL url = new URL("https://art.hearthstonejson.com/v1/render/latest/enUS/256x/" + card.getString("id") + ".png");
-        return url.openStream();
+		// And as before now you can use URL and URLConnection
+		System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0");
+		URL url = new URL("https://art.hearthstonejson.com/v1/render/latest/enUS/256x/" + card.getString("id") + ".png");
+		return url.openStream();
+	}
+
+	private static InputStream getInputStream512(JSONObject card) throws Exception {
+		// Create a new trust manager that trust all certificates
+		TrustManager[] trustAllCerts = new TrustManager[]{
+				new X509TrustManager() {
+					public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+						return null;
+					}
+					public void checkClientTrusted(
+							java.security.cert.X509Certificate[] certs, String authType) {
+					}
+					public void checkServerTrusted(
+							java.security.cert.X509Certificate[] certs, String authType) {
+					}
+				}
+		};
+
+		// Activate the new trust manager
+		try {
+			SSLContext sc = SSLContext.getInstance("SSL");
+			sc.init(null, trustAllCerts, new java.security.SecureRandom());
+			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		} catch (Exception e) {
+			System.err.println("Caught exception " + e.getMessage());
+		}
+
+		// And as before now you can use URL and URLConnection
+		System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0");
+		URL url = new URL("https://art.hearthstonejson.com/v1/render/latest/enUS/512x/" + card.getString("id") + ".png");
+		return url.openStream();
 	}
 
 //    private static InputStream getInputStream(JSONObject card) throws Exception {
