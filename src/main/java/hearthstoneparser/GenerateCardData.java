@@ -27,9 +27,30 @@ import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
-	private static final boolean FETCH_IMAGES = true;
-	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\hearthsim\\unitypack\\out\\audio2";
+	private static final boolean FETCH_IMAGES = false;
+	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\Source\\hearthsim\\python-unitypack\\out\\audio2";
 	private static final Map<String, String> SET_CODES = buildSetCodes();
+	// The exported info from hearthstonejson isn"t good
+	private static final List<String> CARD_IDS_TO_FIX = Lists.newArrayList(
+			"DAL_357t", // Spirit of Lucentbark
+			"DALA_BOSS_07p", // Take Flight!
+			"DALA_BOSS_07p2", // Flying!
+			"DALA_BOSS_45p", // Ray of Suffering
+			"DALA_BOSS_45px", // Ray of Suffering
+			"DALA_BOSS_69p", // Dragonwrath
+			"DALA_BOSS_69px", // Dragonwrath
+			"FB_LK005", // Remorseless Winter
+			"GILA_601", // Cannon
+			"ICCA08_030p", // Remorseless Winter
+			"DAL_007", // Rafaam"s Scheme
+			"DAL_008", // Dr Boom"s Scheme
+			"DAL_009", // Hagatha"s Scheme
+			"DAL_010", // Togwaggle"s Scheme
+			"DAL_011", // Lazul"s Scheme
+			"ULDA_204", // Reno's Magical Torch
+			"ULDA_207", // The Gatling Wand
+			"ULDA_302" // Academic Research
+	);
 
 	private static Map<String,String> buildSetCodes() {
 		Map<String, String> result = new HashMap<>();
@@ -96,18 +117,20 @@ public class GenerateCardData {
 					}
 				}
 
-				JSONObject originalText = (JSONObject) card.remove("text");
-				if (originalText != null && originalText.has("enUS")) {
-					card.put("text", originalText.getString("enUS"));
-				}
+				card.remove("targetingArrowText");
 
 				JSONObject originalCollectionText = (JSONObject) card.remove("collectionText");
 				if (originalCollectionText != null && originalCollectionText.has("enUS")) {
-					card.put("collectionText", originalCollectionText.getString("enUS"));
+					card.put("collectionText", sanitize(originalCollectionText.getString("enUS")));
+				}
+
+				JSONObject originalText = (JSONObject) card.remove("text");
+				if (originalText != null && originalText.has("enUS")) {
+					card.put("text", fixText(card, originalText.getString("enUS")));
 				}
 
 				if (card.has("flavor")) {
-					card.put("flavor", card.getJSONObject("flavor").getString("enUS"));
+					card.put("flavor", sanitize(card.getJSONObject("flavor").getString("enUS")));
 				}
 
 				if (card.has("race")) {
@@ -200,6 +223,7 @@ public class GenerateCardData {
 			System.err.println("Issue processing card " + card);
 		}
 		System.out.println("finished processing cards");
+		System.out.println(referenceCards);
 	}
 
 	private static List<File> flattenDirectoryStructure(File file) {
@@ -266,6 +290,18 @@ public class GenerateCardData {
 		System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0");
 		URL url = new URL("https://art.hearthstonejson.com/v1/render/latest/enUS/512x/" + card.getString("id") + ".png");
 		return url.openStream();
+	}
+
+	private static String fixText(JSONObject card, String text) {
+		String newText = sanitize(text);
+		if (!CARD_IDS_TO_FIX.contains(card.getString("id"))) {
+			return newText;
+		}
+		return newText + " @" +  sanitize(card.getString("collectionText"));
+	}
+
+	private static String sanitize(String text) {
+		return text.replaceAll("\u00A0", " ");
 	}
 
 //    private static InputStream getInputStream(JSONObject card) throws Exception {
