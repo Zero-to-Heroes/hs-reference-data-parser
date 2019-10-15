@@ -32,24 +32,24 @@ public class GenerateCardData {
 	private static final Map<String, String> SET_CODES = buildSetCodes();
 	// The exported info from hearthstonejson isn"t good
 	private static final List<String> CARD_IDS_TO_FIX = Lists.newArrayList(
-			"DAL_357t", // Spirit of Lucentbark
-			"DALA_BOSS_07p", // Take Flight!
-			"DALA_BOSS_07p2", // Flying!
-			"DALA_BOSS_45p", // Ray of Suffering
-			"DALA_BOSS_45px", // Ray of Suffering
-			"DALA_BOSS_69p", // Dragonwrath
-			"DALA_BOSS_69px", // Dragonwrath
-			"FB_LK005", // Remorseless Winter
-			"GILA_601", // Cannon
-			"ICCA08_030p", // Remorseless Winter
-			"DAL_007", // Rafaam"s Scheme
-			"DAL_008", // Dr Boom"s Scheme
-			"DAL_009", // Hagatha"s Scheme
-			"DAL_010", // Togwaggle"s Scheme
-			"DAL_011", // Lazul"s Scheme
-			"ULDA_204", // Reno's Magical Torch
-			"ULDA_207", // The Gatling Wand
-			"ULDA_302" // Academic Research
+//			"DAL_357t", // Spirit of Lucentbark
+//			"DALA_BOSS_07p", // Take Flight!
+//			"DALA_BOSS_07p2", // Flying!
+//			"DALA_BOSS_45p", // Ray of Suffering
+//			"DALA_BOSS_45px", // Ray of Suffering
+//			"DALA_BOSS_69p", // Dragonwrath
+//			"DALA_BOSS_69px", // Dragonwrath
+//			"FB_LK005", // Remorseless Winter
+//			"GILA_601", // Cannon
+//			"ICCA08_030p", // Remorseless Winter
+//			"DAL_007", // Rafaam"s Scheme
+//			"DAL_008", // Dr Boom"s Scheme
+//			"DAL_009", // Hagatha"s Scheme
+//			"DAL_010", // Togwaggle"s Scheme
+//			"DAL_011", // Lazul"s Scheme
+//			"ULDA_204", // Reno's Magical Torch
+//			"ULDA_207", // The Gatling Wand
+//			"ULDA_302" // Academic Research
 	);
 
 	private static Map<String,String> buildSetCodes() {
@@ -303,35 +303,4 @@ public class GenerateCardData {
 	private static String sanitize(String text) {
 		return text.replaceAll("\u00A0", " ");
 	}
-
-//    private static InputStream getInputStream(JSONObject card) throws Exception {
-//        String url = "https://art.hearthstonejson.com/v1/render/latest/enUS/256x/" + card.getString("id") + ".png";
-//
-//        SSLContextBuilder builder = new SSLContextBuilder();
-//        builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
-//        SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(builder.build(),
-//                SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER) {
-//            @Override
-//            protected void prepareSocket(SSLSocket socket) throws IOException {
-//                try {
-//                    PropertyUtils.setProperty(socket, "host", "hsreplay.net");
-//                    socket.setEnabledProtocols(new String[] { "SSLv3", "TLSv1", "TLSv1.1", "TLSv1.2" });
-//                }
-//                catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException ex) {
-//                    System.err.println("Exception " + ex.getMessage());
-//                }
-//                super.prepareSocket(socket);
-//            }
-//
-//        };
-//        CloseableHttpClient httpClient = HttpClients
-//                .custom()
-//                .setSSLSocketFactory(sslsf)
-//                .setDefaultRequestConfig(RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD).build())
-//                .build();
-//        HttpGet httpGet = new HttpGet(url);
-//        CloseableHttpResponse response1 = httpClient.execute(httpGet);
-//        HttpEntity entity1 = response1.getEntity();
-//        return entity1.getContent();
-//    }
 }
