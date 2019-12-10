@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
-	private static final boolean FETCH_IMAGES = false;
+	private static final boolean FETCH_IMAGES = true;
 	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\Source\\hearthsim\\python-unitypack\\out\\audio2";
 	private static final Map<String, String> SET_CODES = buildSetCodes();
 	// The exported info from hearthstonejson isn"t good
@@ -90,6 +90,13 @@ public class GenerateCardData {
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(File::getName)
 				.collect(Collectors.toSet());
+
+		Set<String> existingTextures = Arrays.stream(new File("textures").listFiles())
+				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+				.map(File::getName)
+				.collect(Collectors.toSet());
 //        Set<String> existingImages = new HashSet<>();
 
 		System.out.println("init done " + referenceCards.length() + ", " + soundEffects.length() + ", " + audioClips.size());
@@ -101,6 +108,9 @@ public class GenerateCardData {
 				if (!card.has("name")) {
 					continue;
 				}
+//				if (!card.getString("id").startsWith("DRG")) {
+//					continue;
+//				}
 				JSONObject nameLoc = card.getJSONObject("name");
 				card.remove("name");
 				card.put("name", nameLoc.getString("enUS"));
@@ -154,7 +164,7 @@ public class GenerateCardData {
 					}
 					card.put("set", WordUtils.capitalizeFully(set));
 				}
-				if (card.has("type")) {
+				if (card.has("type") && card.get("type") instanceof String) {
 					card.put("type", WordUtils.capitalizeFully(card.getString("type")));
 				}
 
@@ -167,12 +177,14 @@ public class GenerateCardData {
 //				}
 
 				String imageName = id + ".png";
-				if (existingImages.contains(imageName) && existingImages512.contains(imageName)) {
+				String texture = id + ".jpg";
+				if (existingImages.contains(imageName)
+						&& existingImages512.contains(imageName)
+						&& existingTextures.contains(texture)) {
 					System.out.println("File exists: " + imageName);
 					card.put("cardImage", imageName);
 					continue;
 				}
-				System.out.println("File doesn't exist, moving on: " + imageName);
 				try {
 					// Download the card
 					if (!existingImages.contains(imageName)) {
@@ -196,6 +208,25 @@ public class GenerateCardData {
 					System.err.println("Could not find image! " + e.getMessage());
 				}
 				try {
+					// Download the texture
+					if (!existingTextures.contains(texture)) {
+						InputStream in = getInputStreamTexture(card);
+						Files.copy(in, Paths.get("textures/" + texture));
+						long imageSize = Files.size(Paths.get("textures/" + texture));
+						if (imageSize > 0) {
+							in.close();
+							System.out.println("Downloaded texture for " + id);
+						}
+						else {
+							Paths.get("textures/" + texture).toFile().delete();
+							System.out.println("Empty textures: " + texture);
+						}
+					}
+				}catch (FileAlreadyExistsException e) {
+				} catch (Exception e) {
+					System.err.println("Could not find textures! " + e.getMessage());
+				}
+				try {
 					if (!existingImages512.contains(imageName)) {
 						InputStream in = getInputStream512(card);
 						Files.copy(in, Paths.get("images512/" + imageName));
@@ -216,11 +247,11 @@ public class GenerateCardData {
 				} catch (Exception e) {
 					System.err.println("Could not find 512 image! " + e.getMessage());
 				}
-				System.out.println(referenceCards);
+//				System.out.println(referenceCards);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.err.println("Issue processing card " + card);
+			System.err.println("Issue processing card " + card.getString("id"));
 		}
 		System.out.println("finished processing cards");
 		System.out.println(referenceCards);
@@ -228,6 +259,37 @@ public class GenerateCardData {
 
 	private static List<File> flattenDirectoryStructure(File file) {
 		return file.isDirectory() ? Arrays.asList(file.listFiles()) : Lists.newArrayList(file);
+	}
+
+	private static InputStream getInputStreamTexture(JSONObject card) throws Exception {
+		// Create a new trust manager that trust all certificates
+		TrustManager[] trustAllCerts = new TrustManager[]{
+				new X509TrustManager() {
+					public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+						return null;
+					}
+					public void checkClientTrusted(
+							java.security.cert.X509Certificate[] certs, String authType) {
+					}
+					public void checkServerTrusted(
+							java.security.cert.X509Certificate[] certs, String authType) {
+					}
+				}
+		};
+
+		// Activate the new trust manager
+		try {
+			SSLContext sc = SSLContext.getInstance("SSL");
+			sc.init(null, trustAllCerts, new java.security.SecureRandom());
+			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		} catch (Exception e) {
+			System.err.println("Caught exception " + e.getMessage());
+		}
+
+		// And as before now you can use URL and URLConnection
+		System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0");
+		URL url = new URL("https://art.hearthstonejson.com/v1/256x/" + card.getString("id") + ".jpg");
+		return url.openStream();
 	}
 
 	private static InputStream getInputStream(JSONObject card) throws Exception {
