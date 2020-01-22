@@ -97,6 +97,13 @@ public class GenerateCardData {
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(File::getName)
 				.collect(Collectors.toSet());
+
+		Set<String> existingTiles = Arrays.stream(new File("tiles").listFiles())
+				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+				.map(File::getName)
+				.collect(Collectors.toSet());
 //        Set<String> existingImages = new HashSet<>();
 
 		System.out.println("init done " + referenceCards.length() + ", " + soundEffects.length() + ", " + audioClips.size());
@@ -180,7 +187,8 @@ public class GenerateCardData {
 				String texture = id + ".jpg";
 				if (existingImages.contains(imageName)
 						&& existingImages512.contains(imageName)
-						&& existingTextures.contains(texture)) {
+						&& existingTextures.contains(texture)
+						&& existingTiles.contains(texture)) {
 					System.out.println("File exists: " + imageName);
 					card.put("cardImage", imageName);
 					continue;
@@ -225,6 +233,25 @@ public class GenerateCardData {
 				}catch (FileAlreadyExistsException e) {
 				} catch (Exception e) {
 					System.err.println("Could not find textures! " + e.getMessage());
+				}
+				try {
+					// Download the texture
+					if (!existingTiles.contains(texture)) {
+						InputStream in = getInputStreamTile(card);
+						Files.copy(in, Paths.get("tiles/" + texture));
+						long imageSize = Files.size(Paths.get("tiles/" + texture));
+						if (imageSize > 0) {
+							in.close();
+							System.out.println("Downloaded tile for " + id);
+						}
+						else {
+							Paths.get("tiles/" + texture).toFile().delete();
+							System.out.println("Empty tile: " + texture);
+						}
+					}
+				}catch (FileAlreadyExistsException e) {
+				} catch (Exception e) {
+					System.err.println("Could not find tile! " + e.getMessage());
 				}
 				try {
 					if (!existingImages512.contains(imageName)) {
@@ -289,6 +316,37 @@ public class GenerateCardData {
 		// And as before now you can use URL and URLConnection
 		System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0");
 		URL url = new URL("https://art.hearthstonejson.com/v1/256x/" + card.getString("id") + ".jpg");
+		return url.openStream();
+	}
+
+	private static InputStream getInputStreamTile(JSONObject card) throws Exception {
+		// Create a new trust manager that trust all certificates
+		TrustManager[] trustAllCerts = new TrustManager[]{
+				new X509TrustManager() {
+					public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+						return null;
+					}
+					public void checkClientTrusted(
+							java.security.cert.X509Certificate[] certs, String authType) {
+					}
+					public void checkServerTrusted(
+							java.security.cert.X509Certificate[] certs, String authType) {
+					}
+				}
+		};
+
+		// Activate the new trust manager
+		try {
+			SSLContext sc = SSLContext.getInstance("SSL");
+			sc.init(null, trustAllCerts, new java.security.SecureRandom());
+			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		} catch (Exception e) {
+			System.err.println("Caught exception " + e.getMessage());
+		}
+
+		// And as before now you can use URL and URLConnection
+		System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0");
+		URL url = new URL("https://art.hearthstonejson.com/v1/tiles/" + card.getString("id") + ".jpg");
 		return url.openStream();
 	}
 
