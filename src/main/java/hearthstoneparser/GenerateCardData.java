@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
-	private static final boolean FETCH_IMAGES = true;
+	private static final boolean FETCH_IMAGES = false;
 	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\Source\\hearthsim\\python-unitypack\\out\\audio2";
 	private static final Map<String, String> SET_CODES = buildSetCodes();
 	// The exported info from hearthstonejson isn"t good
@@ -55,6 +55,7 @@ public class GenerateCardData {
 	private static Map<String,String> buildSetCodes() {
 		Map<String, String> result = new HashMap<>();
 		result.put("1129", "Troll");
+		result.put("1403", "Yod");
 		return result;
 	}
 
