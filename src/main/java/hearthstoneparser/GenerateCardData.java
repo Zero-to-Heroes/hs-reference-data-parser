@@ -27,10 +27,29 @@ import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
-	private static final boolean FETCH_IMAGES = false;
-	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\Source\\hearthsim\\python-unitypack\\out\\audio2";
+	private static final boolean FETCH_IMAGES = true;
+	private static final boolean FORCE_REFETCH_IMAGES = false;
+	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\Source\\hearthsim\\unitypack\\out\\audio2";
 	private static final Map<String, String> SET_CODES = buildSetCodes();
 	// The exported info from hearthstonejson isn"t good
+	private static final List<String> CARDS_TO_DOWNLOAD = Lists.newArrayList(
+//			"TB_BaconShop_HERO_08",
+//			"TB_BaconUps_123",
+//			"BGS_071",
+//			"BT_010",
+//			"TB_BaconUps_124",
+//			"BOT_238",
+//			"BOT_270",
+//			"TRL_124",
+//			"BOT_566",
+//			"CS2_004",
+//			"EX1_622",
+//			"CS1_130",
+//			"CS1_112",
+//			"EX1_334",
+//			"EX1_623",
+//			"EX1_339"
+	);
 	private static final List<String> CARD_IDS_TO_FIX = Lists.newArrayList(
 //			"DAL_357t", // Spirit of Lucentbark
 //			"DALA_BOSS_07p", // Take Flight!
@@ -56,6 +75,7 @@ public class GenerateCardData {
 		Map<String, String> result = new HashMap<>();
 		result.put("1129", "Troll");
 		result.put("1403", "Yod");
+		result.put("year_of_the_dragon", "Yod");
 		return result;
 	}
 
@@ -136,6 +156,8 @@ public class GenerateCardData {
 				}
 
 				card.remove("targetingArrowText");
+				card.remove("howToEarn");
+				card.remove("howToEarnGolden");
 
 				JSONObject originalCollectionText = (JSONObject) card.remove("collectionText");
 				if (originalCollectionText != null && originalCollectionText.has("enUS")) {
@@ -157,7 +179,12 @@ public class GenerateCardData {
 				}
 
 				if (card.has("cardClass")) {
-					card.put("playerClass", WordUtils.capitalizeFully(card.getString("cardClass")));
+					if (card.get("cardClass").equals(14)) {
+						card.put("playerClass", "DEMONHUNTER");
+						card.put("cardClass", "DEMONHUNTER");
+					} else {
+						card.put("playerClass", WordUtils.capitalizeFully(card.getString("cardClass")));
+					}
 				}
 				if (card.has("playerClass")) {
 					card.put("playerClass", WordUtils.capitalizeFully(card.getString("playerClass")));
@@ -167,8 +194,9 @@ public class GenerateCardData {
 				}
 				if (card.has("set")) {
 					String set = String.valueOf(card.get("set"));
-					if (SET_CODES.containsKey(set)) {
-						set = SET_CODES.get(set);
+					// TODO: issue with Year_of_the_dragon (not replaced by Yod in output)
+					if (SET_CODES.containsKey(set.toLowerCase())) {
+						set = SET_CODES.get(set.toLowerCase());
 					}
 					card.put("set", WordUtils.capitalizeFully(set));
 				}
@@ -180,13 +208,16 @@ public class GenerateCardData {
 				if (!FETCH_IMAGES) {
 					continue;
 				}
+				if (CARDS_TO_DOWNLOAD.size() > 0 && !CARDS_TO_DOWNLOAD.contains(id)) {
+					continue;
+				}
 //				if (!id.startsWith("DAL")) {
 //					continue;
 //				}
 
 				String imageName = id + ".png";
 				String texture = id + ".jpg";
-				if (existingImages.contains(imageName)
+				if (!FORCE_REFETCH_IMAGES && existingImages.contains(imageName)
 						&& existingImages512.contains(imageName)
 						&& existingTextures.contains(texture)
 						&& existingTiles.contains(texture)) {
@@ -196,7 +227,7 @@ public class GenerateCardData {
 				}
 				try {
 					// Download the card
-					if (!existingImages.contains(imageName)) {
+					if (FORCE_REFETCH_IMAGES || !existingImages.contains(imageName)) {
 						InputStream in = getInputStream(card);
 						Files.copy(in, Paths.get("images/" + imageName));
 						long imageSize = Files.size(Paths.get("images/" + imageName));
@@ -218,7 +249,7 @@ public class GenerateCardData {
 				}
 				try {
 					// Download the texture
-					if (!existingTextures.contains(texture)) {
+					if (FORCE_REFETCH_IMAGES || !existingTextures.contains(texture)) {
 						InputStream in = getInputStreamTexture(card);
 						Files.copy(in, Paths.get("textures/" + texture));
 						long imageSize = Files.size(Paths.get("textures/" + texture));
@@ -237,7 +268,7 @@ public class GenerateCardData {
 				}
 				try {
 					// Download the texture
-					if (!existingTiles.contains(texture)) {
+					if (FORCE_REFETCH_IMAGES || !existingTiles.contains(texture)) {
 						InputStream in = getInputStreamTile(card);
 						Files.copy(in, Paths.get("tiles/" + texture));
 						long imageSize = Files.size(Paths.get("tiles/" + texture));
@@ -255,7 +286,7 @@ public class GenerateCardData {
 					System.err.println("Could not find tile! " + e.getMessage());
 				}
 				try {
-					if (!existingImages512.contains(imageName)) {
+					if (FORCE_REFETCH_IMAGES || !existingImages512.contains(imageName)) {
 						InputStream in = getInputStream512(card);
 						Files.copy(in, Paths.get("images512/" + imageName));
 						long imageSize = Files.size(Paths.get("images512/" + imageName));
