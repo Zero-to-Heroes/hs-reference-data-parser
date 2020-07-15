@@ -33,22 +33,11 @@ public class GenerateCardData {
 	private static final Map<String, String> SET_CODES = buildSetCodes();
 	// The exported info from hearthstonejson isn"t good
 	private static final List<String> CARDS_TO_DOWNLOAD = Lists.newArrayList(
-//			"TB_BaconShop_HERO_08",
-//			"TB_BaconUps_123",
-//			"BGS_071",
-//			"BT_010",
-//			"TB_BaconUps_124",
-//			"BOT_238",
-//			"BOT_270",
-//			"TRL_124",
-//			"BOT_566",
-//			"CS2_004",
-//			"EX1_622",
-//			"CS1_130",
-//			"CS1_112",
-//			"EX1_334",
-//			"EX1_623",
-//			"EX1_339"
+//			"TB_BaconShop_HERO_50", "TB_BaconShop_HP_077",
+//			"TB_BaconShop_HERO_38", "TB_BaconShop_HP_038",
+//			"TB_BaconShop_HERO_43", "TB_BaconShop_HP_048",
+//			"TB_BaconShop_HP_065", "TB_BaconShop_HP_075",
+//			"BGS_069", "TB_BaconUps_121"
 	);
 	private static final List<String> CARD_IDS_TO_FIX = Lists.newArrayList(
 //			"DAL_357t", // Spirit of Lucentbark
@@ -76,6 +65,7 @@ public class GenerateCardData {
 		result.put("1129", "Troll");
 		result.put("1403", "Yod");
 		result.put("year_of_the_dragon", "Yod");
+		result.put("1463", "Demon_hunter_initiate");
 		return result;
 	}
 
@@ -149,7 +139,7 @@ public class GenerateCardData {
 						for (int i = 0; i < soundEffects.getJSONObject(id).getJSONArray(key).length(); i++) {
 							String audioFilename = (String) soundEffects.getJSONObject(id).getJSONArray(key).get(i);
 							if (!audioClips.contains(audioFilename)) {
-								System.err.println("Audio file not present: " + audioFilename + " for " + id);
+//								System.err.println("Audio file not present: " + audioFilename + " for " + id);
 							}
 						}
 					}
@@ -211,6 +201,9 @@ public class GenerateCardData {
 				if (CARDS_TO_DOWNLOAD.size() > 0 && !CARDS_TO_DOWNLOAD.contains(id)) {
 					continue;
 				}
+//				if (!id.startsWith("YOD")) {
+//					continue;
+//				}
 //				if (!id.startsWith("DAL")) {
 //					continue;
 //				}
