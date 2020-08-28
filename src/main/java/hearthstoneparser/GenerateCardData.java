@@ -27,40 +27,37 @@ import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
-	private static final boolean FETCH_IMAGES = true;
-	private static final boolean FORCE_REFETCH_IMAGES = true;
-	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE = "G:\\Source\\hearthsim\\unitypack\\out\\audio2";
+	private static final boolean FETCH_IMAGES = false;
+	private static final boolean FORCE_REFETCH_IMAGES = false;
+	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE =
+			"G:\\Source\\hearthsim\\python-unitypack\\out\\audio2";
+
 	private static final Map<String, String> SET_CODES = buildSetCodes();
 	// The exported info from hearthstonejson isn"t good
 	private static final List<String> CARDS_TO_DOWNLOAD = Lists.newArrayList(
+			// These are already updated (27/08)
 //			"TB_BaconShop_HERO_50", "TB_BaconShop_HP_077",
 //			"TB_BaconShop_HERO_38", "TB_BaconShop_HP_038",
 //			"TB_BaconShop_HERO_43", "TB_BaconShop_HP_048",
 //			"TB_BaconShop_HP_065", "TB_BaconShop_HP_075",
-//			"BGS_069", "TB_BaconUps_121"
-//			"DAL_177"
-			"DRG_089","BT_124","BT_429","BT_187","BT_430",
-			"DRG_322","BT_128","DRG_610","DRG_610t2","DRG_610t3"
+//			"BGS_069", "TB_BaconUps_121",
+//			"DAL_177",
+
+//			// 17.6
+//			"DRG_089","BT_124","BT_429","BT_187","BT_430",
+//			"DRG_322","BT_128","DRG_610","DRG_610t2","DRG_610t3",
+//			"EX1_614","CS1_112",
+//
+//			// 18.0
+//
+//			// 18.0.2
+//			"BT_255", "SCH_159", "EX1_614", "TB_BaconUps_125", "BGS_075",
+//			"BGS_078", "TB_BaconUps_135", "BGS_046", "TB_BaconUps_132",
+//			"BGS_021", "TB_BaconUps_090", "BGS_018", "TB_BaconUps_085",
+//			"TB_BaconShop_HP_074", "TB_BaconShop_HP_046", "TB_BaconShop_HP_024", "TB_BaconShop_HP_011"
+
 	);
 	private static final List<String> CARD_IDS_TO_FIX = Lists.newArrayList(
-//			"DAL_357t", // Spirit of Lucentbark
-//			"DALA_BOSS_07p", // Take Flight!
-//			"DALA_BOSS_07p2", // Flying!
-//			"DALA_BOSS_45p", // Ray of Suffering
-//			"DALA_BOSS_45px", // Ray of Suffering
-//			"DALA_BOSS_69p", // Dragonwrath
-//			"DALA_BOSS_69px", // Dragonwrath
-//			"FB_LK005", // Remorseless Winter
-//			"GILA_601", // Cannon
-//			"ICCA08_030p", // Remorseless Winter
-//			"DAL_007", // Rafaam"s Scheme
-//			"DAL_008", // Dr Boom"s Scheme
-//			"DAL_009", // Hagatha"s Scheme
-//			"DAL_010", // Togwaggle"s Scheme
-//			"DAL_011", // Lazul"s Scheme
-//			"ULDA_204", // Reno's Magical Torch
-//			"ULDA_207", // The Gatling Wand
-//			"ULDA_302" // Academic Research
 	);
 
 	private static Map<String,String> buildSetCodes() {
