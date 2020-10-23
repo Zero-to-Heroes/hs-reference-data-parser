@@ -27,8 +27,8 @@ import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
-	private static final boolean FETCH_IMAGES = false;
-	private static final boolean FORCE_REFETCH_IMAGES = false;
+	private static final boolean FETCH_IMAGES = true;
+	private static final boolean FORCE_REFETCH_IMAGES = true;
 	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE =
 			"G:\\Source\\hearthsim\\python-unitypack\\out\\audio2";
 
@@ -56,6 +56,19 @@ public class GenerateCardData {
 //			"BGS_021", "TB_BaconUps_090", "BGS_018", "TB_BaconUps_085",
 //			"TB_BaconShop_HP_074", "TB_BaconShop_HP_046", "TB_BaconShop_HP_024", "TB_BaconShop_HP_011"
 
+			// 18.2
+			"BGS_017", "TB_BaconUps_086", "SCH_305", "SCH_120", "SCH_615", "SCH_181", "BT_307",
+			"TB_BaconShop_HP_037a",
+//
+//			// 18.4.2
+			"TB_BaconShop_HP_019", "TB_BaconShop_HP_087t", "TB_BaconShop_HP_068",
+			"TB_BaconShop_HP_088", "TB_BaconShop_HERO_34", "TB_BaconShop_HP_014",
+			"TB_BaconUps_138", "BGS_120", "TB_BaconUps_160", "BGS_128",
+			"TB_Baconups_203", "BGS_105", "TB_BaconUps_207", "BGS_100",
+			"TB_BaconUps_200", "BGS_121", "TB_BaconUps_165",
+
+//			 18.6
+			"BT_006", "BT_028t"
 	);
 	private static final List<String> CARD_IDS_TO_FIX = Lists.newArrayList(
 	);
