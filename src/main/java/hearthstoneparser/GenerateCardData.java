@@ -27,8 +27,8 @@ import java.util.stream.Collectors;
 
 public class GenerateCardData {
 
-	private static final boolean FETCH_IMAGES = false;
-	private static final boolean FORCE_REFETCH_IMAGES = false;
+	private static final boolean FETCH_IMAGES = true;
+	private static final boolean FORCE_REFETCH_IMAGES = true;
 	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE =
 			"G:\\Source\\hearthsim\\python-unitypack\\out\\audio2";
 
@@ -60,33 +60,39 @@ public class GenerateCardData {
 //			"BGS_017", "TB_BaconUps_086", "SCH_305", "SCH_120", "SCH_615", "SCH_181", "BT_307",
 ////
 ////			// 18.4.2
-//			"TB_BaconShop_HP_019", "TB_BaconShop_HP_087t", "TB_BaconShop_HP_068",
-//			"TB_BaconShop_HP_088", "TB_BaconShop_HERO_34", "TB_BaconShop_HP_014",
-//			"TB_BaconUps_138", "BGS_120", "TB_BaconUps_160", "BGS_128",
-//			"TB_Baconups_203", "BGS_105", "TB_BaconUps_207", "BGS_100",
-//			"TB_BaconUps_200", "BGS_121", "TB_BaconUps_165",
+			"TB_BaconShop_HP_019", "TB_BaconShop_HP_087t", "TB_BaconShop_HP_068",
+			"TB_BaconShop_HP_088", "TB_BaconShop_HERO_34", "TB_BaconShop_HP_014",
+			"TB_BaconUps_138", "BGS_120", "TB_BaconUps_160", "BGS_128",
+			"TB_Baconups_203", "BGS_105", "TB_BaconUps_207", "BGS_100",
+			"TB_BaconUps_200", "BGS_121", "TB_BaconUps_165",
 //
-////			 18.6
-//			"BT_006", "BT_028t",
+//			 18.6
+			"BT_006", "BT_028t",
 //
 //			// 18.6.1
-//			"PVPDR_SCH_Active08", "PVPDR_SCH_Active44", "PVPDR_SCH_Active38", "PVPDR_SCH_Active19",
-//			"PVPDR_SCH_Active56", "PVPDR_SCH_Active61", "PVPDR_SCH_Passive14", "PVPDR_SCH_DemonHuntert2",
-//			"PVPDR_SCH_Roguet2", "PVPDR_SCH_Roguep1", "PVPDR_SCH_Shamanp1", "PVPDR_SCH_Warlockp2",
-//			"PVPDR_SCH_Warriorp1",
-//			"TB_BaconShop_HP_037a", "TB_BaconShop_HP_033", "TB_BaconShop_HP_075",
-//			"TB_BaconShop_HP_041", "TB_BaconShop_HP_085", "TB_BaconShop_HP_010",
-//			"TB_BaconShop_HP_062", "TB_BaconShop_HP_020", "TB_BaconShop_HP_011",
-//			"TB_BaconShop_HP_077",
-//			"TB_BaconUps_079",
-//			"BGS_060", "TB_BaconUps_150",
-//			"BGS_048", "TB_BaconUps_140",
-//			"BGS_056", "TB_BaconUps_139",
-//			"BGS_009", "TB_BaconUps_082",
-//			"BGS_124", "TB_BaconUps_163",
-//			"BGS_100", "TB_BaconUps_200",
-//			"BGS_047", "TB_BaconUps_134",
-//			"BGS_069", "TB_BaconUps_121"
+			"PVPDR_SCH_Active08", "PVPDR_SCH_Active44", "PVPDR_SCH_Active38", "PVPDR_SCH_Active19",
+			"PVPDR_SCH_Active56", "PVPDR_SCH_Active61", "PVPDR_SCH_Passive14", "PVPDR_SCH_DemonHuntert2",
+			"PVPDR_SCH_Roguet2", "PVPDR_SCH_Roguep1", "PVPDR_SCH_Shamanp1", "PVPDR_SCH_Warlockp2",
+			"PVPDR_SCH_Warriorp1",
+			"TB_BaconShop_HP_037a", "TB_BaconShop_HP_033", "TB_BaconShop_HP_075",
+			"TB_BaconShop_HP_041", "TB_BaconShop_HP_085", "TB_BaconShop_HP_010",
+			"TB_BaconShop_HP_062", "TB_BaconShop_HP_020", "TB_BaconShop_HP_011",
+			"TB_BaconShop_HP_077",
+			"TB_BaconUps_079",
+			"BGS_060", "TB_BaconUps_150",
+			"BGS_048", "TB_BaconUps_140",
+			"BGS_056", "TB_BaconUps_139",
+			"BGS_009", "TB_BaconUps_082",
+			"BGS_124", "TB_BaconUps_163",
+			"BGS_100", "TB_BaconUps_200",
+			"BGS_047", "TB_BaconUps_134",
+			"BGS_069", "TB_BaconUps_121",
+
+			// 19.2
+			"TB_BaconShop_HP_102", "TB_BaconShop_HP_072",
+			"BT_354", "SCH_355", "DMF_227", "ULD_156", "SCH_142", "SCH_428",
+			"PVPDR_DMF_Magep1", "PVPDR_SCH_Warlockt2", "PVPDR_DMF_DemonHuntert1",
+			"PVPDR_035", "PVPDR_SCH_Druidt6", "PVPDR_DMF_Paladint2"
 	);
 	private static final List<String> CARD_IDS_TO_FIX = Lists.newArrayList(
 	);
