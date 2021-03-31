@@ -10,10 +10,7 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
@@ -26,73 +23,29 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GenerateCardData {
+	private static final boolean FETCH_IMAGES = false;
+	private static final boolean FORCE_REFETCH_IMAGES = false;
+	private static final boolean ONLY_BGS = false;
 
-	private static final boolean FETCH_IMAGES = true;
-	private static final boolean FORCE_REFETCH_IMAGES = true;
 	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE =
-			"G:\\Source\\hearthsim\\python-unitypack\\out\\audio2";
+			"E:\\Source\\hearthsim\\python-unitypack\\out\\audio2";
 
 	private static final Map<String, String> SET_CODES = buildSetCodes();
 	// The exported info from hearthstonejson isn"t good
 	private static final List<String> CARDS_TO_DOWNLOAD = Lists.newArrayList(
-			// These are already updated (27/08)
-//			"TB_BaconShop_HERO_50", "TB_BaconShop_HP_077",
-//			"TB_BaconShop_HERO_38", "TB_BaconShop_HP_038",
-//			"TB_BaconShop_HERO_43", "TB_BaconShop_HP_048",
-//			"TB_BaconShop_HP_065", "TB_BaconShop_HP_075",
-//			"BGS_069", "TB_BaconUps_121",
-//			"DAL_177",
+		// 20.0
+//		"YOP_015", "NEW1_012", "SCH_243",
+//			"DAL_177", "DRG_322", "EX1_544", "CS2_084",
+//			"CS2_237", "ULD_156", "CS2_103", "ULD_720",
+//			"DRG_019", "KAR_063", "EX1_565", "DRG_248",
+//			"DRG_217", "DRG_218", "EX1_166", "NEW1_008",
+//			"CS2_004", "UNG_067", "EX1_613", "CS2_233",
+//			"DRG_031", "DRG_600", "DRG_600t2", "DRG_620t3",
+//			"LOOT_093", "DRG_250", "FP1_028", "EX1_029", "DRG_255t2",
+//			"NEW1_019", "YOD_032", "DRG_071", "ICC_466",
+//			"EX1_089", "ICC_705", "DAL_736", "DRG_089",
 
-//			// 17.6
-//			"DRG_089","BT_124","BT_429","BT_187","BT_430",
-//			"DRG_322","BT_128","DRG_610","DRG_610t2","DRG_610t3",
-//			"EX1_614","CS1_112",
-//
-//			// 18.0
-//
-//			// 18.0.2
-//			"BT_255", "SCH_159", "EX1_614", "TB_BaconUps_125", "BGS_075",
-//			"BGS_078", "TB_BaconUps_135", "BGS_046", "TB_BaconUps_132",
-//			"BGS_021", "TB_BaconUps_090", "BGS_018", "TB_BaconUps_085",
-//			"TB_BaconShop_HP_074", "TB_BaconShop_HP_046", "TB_BaconShop_HP_024", "TB_BaconShop_HP_011"
 
-			// 18.2
-//			"BGS_017", "TB_BaconUps_086", "SCH_305", "SCH_120", "SCH_615", "SCH_181", "BT_307",
-////
-////			// 18.4.2
-			"TB_BaconShop_HP_019", "TB_BaconShop_HP_087t", "TB_BaconShop_HP_068",
-			"TB_BaconShop_HP_088", "TB_BaconShop_HERO_34", "TB_BaconShop_HP_014",
-			"TB_BaconUps_138", "BGS_120", "TB_BaconUps_160", "BGS_128",
-			"TB_Baconups_203", "BGS_105", "TB_BaconUps_207", "BGS_100",
-			"TB_BaconUps_200", "BGS_121", "TB_BaconUps_165",
-//
-//			 18.6
-			"BT_006", "BT_028t",
-//
-//			// 18.6.1
-			"PVPDR_SCH_Active08", "PVPDR_SCH_Active44", "PVPDR_SCH_Active38", "PVPDR_SCH_Active19",
-			"PVPDR_SCH_Active56", "PVPDR_SCH_Active61", "PVPDR_SCH_Passive14", "PVPDR_SCH_DemonHuntert2",
-			"PVPDR_SCH_Roguet2", "PVPDR_SCH_Roguep1", "PVPDR_SCH_Shamanp1", "PVPDR_SCH_Warlockp2",
-			"PVPDR_SCH_Warriorp1",
-			"TB_BaconShop_HP_037a", "TB_BaconShop_HP_033", "TB_BaconShop_HP_075",
-			"TB_BaconShop_HP_041", "TB_BaconShop_HP_085", "TB_BaconShop_HP_010",
-			"TB_BaconShop_HP_062", "TB_BaconShop_HP_020", "TB_BaconShop_HP_011",
-			"TB_BaconShop_HP_077",
-			"TB_BaconUps_079",
-			"BGS_060", "TB_BaconUps_150",
-			"BGS_048", "TB_BaconUps_140",
-			"BGS_056", "TB_BaconUps_139",
-			"BGS_009", "TB_BaconUps_082",
-			"BGS_124", "TB_BaconUps_163",
-			"BGS_100", "TB_BaconUps_200",
-			"BGS_047", "TB_BaconUps_134",
-			"BGS_069", "TB_BaconUps_121",
-
-			// 19.2
-			"TB_BaconShop_HP_102", "TB_BaconShop_HP_072",
-			"BT_354", "SCH_355", "DMF_227", "ULD_156", "SCH_142", "SCH_428",
-			"PVPDR_DMF_Magep1", "PVPDR_SCH_Warlockt2", "PVPDR_DMF_DemonHuntert1",
-			"PVPDR_035", "PVPDR_SCH_Druidt6", "PVPDR_DMF_Paladint2"
 	);
 	private static final List<String> CARD_IDS_TO_FIX = Lists.newArrayList(
 	);
@@ -108,10 +61,16 @@ public class GenerateCardData {
 
 	public static void main(String[] args) throws Exception {
 		JSONParser parser = new JSONParser();
+
 		BufferedReader referenceIn = new BufferedReader(new InputStreamReader(
 				GenerateCardData.class.getResourceAsStream("cards.json"),
 				"UTF-8"));
 		JSONArray referenceCards = new JSONArray(((org.json.simple.JSONArray) parser.parse(referenceIn)).toJSONString());
+
+		BufferedReader outOfCardsReferenceIn = new BufferedReader(new InputStreamReader(
+				GenerateCardData.class.getResourceAsStream("out.of.cards.json"),
+				"UTF-8"));
+		JSONArray outOfCardsReferenceCards = new JSONArray(((org.json.simple.JSONArray) parser.parse(outOfCardsReferenceIn)).toJSONString());
 
 		BufferedReader soundEffectsIn = new BufferedReader(new InputStreamReader(
 				GenerateCardData.class.getResourceAsStream("sound_effects.json"),
@@ -125,28 +84,35 @@ public class GenerateCardData {
                 .collect(Collectors.toList());
         System.out.println("Total audio clips: " + audioClips.size());
 
-		Set<String> existingImages = Arrays.stream(new File("D:\\hearthstone_images\\images").listFiles())
+		Set<String> existingImages = Arrays.stream(new File("E:\\hearthstone_images\\images").listFiles())
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(File::getName)
 				.collect(Collectors.toSet());
 
-		Set<String> existingImages512 = Arrays.stream(new File("D:\\hearthstone_images\\images512").listFiles())
+		Set<String> existingImagesGolden = Arrays.stream(new File("E:\\hearthstone_images\\imagesGolden").listFiles())
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(File::getName)
 				.collect(Collectors.toSet());
 
-		Set<String> existingTextures = Arrays.stream(new File("D:\\hearthstone_images\\textures").listFiles())
+//		Set<String> existingImages512 = Arrays.stream(new File("E:\\hearthstone_images\\images512").listFiles())
+//				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+//				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+//				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+//				.map(File::getName)
+//				.collect(Collectors.toSet());
+
+		Set<String> existingTextures = Arrays.stream(new File("E:\\hearthstone_images\\textures").listFiles())
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(File::getName)
 				.collect(Collectors.toSet());
 
-		Set<String> existingTiles = Arrays.stream(new File("D:\\hearthstone_images\\tiles").listFiles())
+		Set<String> existingTiles = Arrays.stream(new File("E:\\hearthstone_images\\tiles").listFiles())
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
 				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
@@ -224,8 +190,18 @@ public class GenerateCardData {
 					if (SET_CODES.containsKey(set.toLowerCase())) {
 						set = SET_CODES.get(set.toLowerCase());
 					}
+					if (set.equalsIgnoreCase("darkmoon_faire") && id.startsWith("YOP")) {
+						set = "darkmoon_races";
+					}
+					card.put("set", WordUtils.capitalizeFully(set));
+				} else if (card.has("collectible") && card.getBoolean("collectible") && "Free".equals(card.getString("rarity"))) {
+					String set = "basic";
+					card.put("set", WordUtils.capitalizeFully(set));
+				} else if (card.has("collectible") && card.getBoolean("collectible")) {
+					String set = "hof";
 					card.put("set", WordUtils.capitalizeFully(set));
 				}
+
 				if (card.has("type") && card.get("type") instanceof String) {
 					card.put("type", WordUtils.capitalizeFully(card.getString("type")));
 				}
@@ -237,53 +213,77 @@ public class GenerateCardData {
 				if (CARDS_TO_DOWNLOAD.size() > 0 && !CARDS_TO_DOWNLOAD.contains(id)) {
 					continue;
 				}
-//				System.out.println("Processing " + id);
+				System.out.println("Processing " + id);
 
 				String imageName = id + ".png";
+				String animatedImageName = id + ".webm";
 				String texture = id + ".jpg";
-				if (!FORCE_REFETCH_IMAGES && existingImages.contains(imageName)
-						&& existingImages512.contains(imageName)
+				JSONObject outOfCardsRefCard = getOutOfCardReference(outOfCardsReferenceCards, id);
+				if (!ONLY_BGS && !FORCE_REFETCH_IMAGES && existingImages.contains(imageName)
+						&& existingImagesGolden.contains(animatedImageName)
+//						&& existingImages512.contains(imageName)
 						&& existingTextures.contains(texture)
 						&& existingTiles.contains(texture)) {
 					System.out.println("File exists: " + imageName);
-					card.put("cardImage", imageName);
 					continue;
 				}
+
 				try {
 					// Download the card
-					if (FORCE_REFETCH_IMAGES || !existingImages.contains(imageName)) {
+					if (!ONLY_BGS && (FORCE_REFETCH_IMAGES || !existingImages.contains(imageName))) {
+						System.out.println("Downloading card " + imageName);
 						InputStream in = getInputStream(card);
-						Files.copy(in, Paths.get("D:\\hearthstone_images\\images/" + imageName));
-						long imageSize = Files.size(Paths.get("D:\\hearthstone_images\\images/" + imageName));
+						Files.copy(in, Paths.get("E:\\hearthstone_images\\images/" + imageName));
+						long imageSize = Files.size(Paths.get("E:\\hearthstone_images\\images/" + imageName));
 						if (imageSize > 0) {
-							// Update the card
-							card.put("cardImage", imageName);
 							in.close();
 							System.out.println("Downloaded card for " + id);
 						}
 						else {
-							Paths.get("D:\\hearthstone_images\\images/" + imageName).toFile().delete();
+							Paths.get("E:\\hearthstone_images\\images/" + imageName).toFile().delete();
 							System.out.println("Empty image: " + imageName);
 						}
 					}
 				} catch (FileAlreadyExistsException e) {
-//					System.out.println("Card already exists " + id);
-					card.put("cardImage", imageName);
 				} catch (Exception e) {
 					System.err.println("Could not find image! " + e.getMessage());
 				}
+
+				// BG cards
+				try {
+					// Download the card
+					String bgsImageName = card.has("battlegroundsPremiumDbfId") ? id + "_bgs.png" : id + "_bgs_premium.png";
+					if ((card.has("battlegroundsPremiumDbfId") || card.has("battlegroundsNormalDbfId"))
+							&& (FORCE_REFETCH_IMAGES || !existingImages.contains(bgsImageName))) {
+						InputStream in = getInputStreamBgs(card);
+						Files.copy(in, Paths.get("E:\\hearthstone_images\\images/bgs/" + bgsImageName));
+						long imageSize = Files.size(Paths.get("E:\\hearthstone_images\\images/bgs/" + bgsImageName));
+						if (imageSize > 0) {
+							in.close();
+							System.out.println("Downloaded card for " + id);
+						}
+						else {
+							Paths.get("E:\\hearthstone_images\\images/bgs/" + bgsImageName).toFile().delete();
+							System.out.println("Empty image: " + bgsImageName);
+						}
+					}
+				} catch (FileAlreadyExistsException e) {
+				} catch (Exception e) {
+					System.err.println("Could not find bgs image! " + e.getMessage());
+				}
+
 				try {
 					// Download the texture
-					if (FORCE_REFETCH_IMAGES || !existingTextures.contains(texture)) {
+					if (!ONLY_BGS && (FORCE_REFETCH_IMAGES || !existingTextures.contains(texture))) {
 						InputStream in = getInputStreamTexture(card);
-						Files.copy(in, Paths.get("D:\\hearthstone_images\\textures/" + texture));
-						long imageSize = Files.size(Paths.get("D:\\hearthstone_images\\textures/" + texture));
+						Files.copy(in, Paths.get("E:\\hearthstone_images\\textures/" + texture));
+						long imageSize = Files.size(Paths.get("E:\\hearthstone_images\\textures/" + texture));
 						if (imageSize > 0) {
 							in.close();
 							System.out.println("Downloaded texture for " + id);
 						}
 						else {
-							Paths.get("D:\\hearthstone_images\\textures/" + texture).toFile().delete();
+							Paths.get("E:\\hearthstone_images\\textures/" + texture).toFile().delete();
 							System.out.println("Empty textures: " + texture);
 						}
 					}
@@ -293,16 +293,16 @@ public class GenerateCardData {
 				}
 				try {
 					// Download the texture
-					if (FORCE_REFETCH_IMAGES || !existingTiles.contains(texture)) {
+					if (!ONLY_BGS && (FORCE_REFETCH_IMAGES || !existingTiles.contains(texture))) {
 						InputStream in = getInputStreamTile(card);
-						Files.copy(in, Paths.get("D:\\hearthstone_images\\tiles/" + texture));
-						long imageSize = Files.size(Paths.get("D:\\hearthstone_images\\tiles/" + texture));
+						Files.copy(in, Paths.get("E:\\hearthstone_images\\tiles/" + texture));
+						long imageSize = Files.size(Paths.get("E:\\hearthstone_images\\tiles/" + texture));
 						if (imageSize > 0) {
 							in.close();
 							System.out.println("Downloaded tile for " + id);
 						}
 						else {
-							Paths.get("D:\\hearthstone_images\\tiles/" + texture).toFile().delete();
+							Paths.get("E:\\hearthstone_images\\tiles/" + texture).toFile().delete();
 							System.out.println("Empty tile: " + texture);
 						}
 					}
@@ -310,26 +310,43 @@ public class GenerateCardData {
 				} catch (Exception e) {
 					System.err.println("Could not find tile! " + e.getMessage());
 				}
+
+//				try {
+//					if (!ONLY_BGS && (FORCE_REFETCH_IMAGES || !existingImages512.contains(imageName))) {
+//						InputStream in = getInputStream512(card);
+//						Files.copy(in, Paths.get("E:\\hearthstone_images\\images512/" + imageName));
+//						long imageSize = Files.size(Paths.get("E:\\hearthstone_images\\images512/" + imageName));
+//						if (imageSize > 0) {
+//							in.close();
+//							System.out.println("Downloaded 512 card for " + id);
+//						}
+//						else {
+//							Paths.get("E:\\hearthstone_images\\images512/" + imageName).toFile().delete();
+//							System.out.println("Empty 512 image: " + imageName);
+//						}
+//					}
+//				} catch (FileAlreadyExistsException e) {
+//				} catch (Exception e) {
+//					System.err.println("Could not find 512 image! " + e.getMessage());
+//				}
+
 				try {
-					if (FORCE_REFETCH_IMAGES || !existingImages512.contains(imageName)) {
-						InputStream in = getInputStream512(card);
-						Files.copy(in, Paths.get("D:\\hearthstone_images\\images512/" + imageName));
-						long imageSize = Files.size(Paths.get("D:\\hearthstone_images\\images512/" + imageName));
+					if (!ONLY_BGS && (FORCE_REFETCH_IMAGES || !existingImagesGolden.contains(animatedImageName))) {
+						InputStream in = getInputStreamAnimated(outOfCardsRefCard);
+						Files.copy(in, Paths.get("E:\\hearthstone_images\\imagesGolden/" + animatedImageName));
+						long imageSize = Files.size(Paths.get("E:\\hearthstone_images\\imagesGolden/" + animatedImageName));
 						if (imageSize > 0) {
-							// Update the card
-							card.put("cardImage", imageName);
 							in.close();
-							System.out.println("Downloaded 512 card for " + id);
+							System.out.println("Downloaded animated card for " + id);
 						}
 						else {
-							Paths.get("D:\\hearthstone_images\\images512/" + imageName).toFile().delete();
-							System.out.println("Empty 512 image: " + imageName);
+							Paths.get("E:\\hearthstone_images\\imagesGolden/" + animatedImageName).toFile().delete();
+							System.out.println("Empty animated image: " + animatedImageName);
 						}
 					}
 				} catch (FileAlreadyExistsException e) {
-					card.put("cardImage", imageName);
 				} catch (Exception e) {
-					System.err.println("Could not find 512 image! " + e.getMessage());
+					System.err.println("Could not find animated image for  " + id + ": " + e.getMessage());
 				}
 //				System.out.println(referenceCards);
 			}
@@ -337,8 +354,22 @@ public class GenerateCardData {
 			e.printStackTrace();
 			System.err.println("Issue processing card " + card.getString("id"));
 		}
+
+		File file = new File("./out.json");
+		FileWriter writer = new FileWriter(file);
+		writer.append(referenceCards.toString());
+		writer.close();
 		System.out.println("finished processing cards");
-		System.out.println(referenceCards);
+//		System.out.println(referenceCards);
+	}
+
+	private static JSONObject getOutOfCardReference(JSONArray outOfCardsReferenceCards, String id) {
+		for (Object obj : outOfCardsReferenceCards) {
+			if (obj instanceof JSONObject && ((JSONObject)obj).getString("id_string").equals(id)) {
+				return (JSONObject)obj;
+			}
+		}
+		return null;
 	}
 
 	private static List<File> flattenDirectoryStructure(File file) {
@@ -438,7 +469,8 @@ public class GenerateCardData {
 		return url.openStream();
 	}
 
-	private static InputStream getInputStream512(JSONObject card) throws Exception {
+
+	private static InputStream getInputStreamBgs(JSONObject card) throws Exception {
 		// Create a new trust manager that trust all certificates
 		TrustManager[] trustAllCerts = new TrustManager[]{
 				new X509TrustManager() {
@@ -465,9 +497,80 @@ public class GenerateCardData {
 
 		// And as before now you can use URL and URLConnection
 		System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0");
-		URL url = new URL("https://art.hearthstonejson.com/v1/render/latest/enUS/512x/" + card.getString("id") + ".png");
+		if (card.has("battlegroundsPremiumDbfId")) {
+			URL url = new URL("https://cards.hearthpwn.com/enUS/bgs/" + card.getString("id") + "_bg.png");
+			return url.openStream();
+		} else {
+			URL url = new URL("https://cards.hearthpwn.com/enUS/anims/" + card.getString("id") + "_premium_000.png");
+			return url.openStream();
+		}
+	}
+
+
+
+	private static InputStream getInputStreamAnimated(JSONObject outOfCard) throws Exception {
+		// Create a new trust manager that trust all certificates
+		TrustManager[] trustAllCerts = new TrustManager[]{
+				new X509TrustManager() {
+					public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+						return null;
+					}
+					public void checkClientTrusted(
+							java.security.cert.X509Certificate[] certs, String authType) {
+					}
+					public void checkServerTrusted(
+							java.security.cert.X509Certificate[] certs, String authType) {
+					}
+				}
+		};
+
+		// Activate the new trust manager
+		try {
+			SSLContext sc = SSLContext.getInstance("SSL");
+			sc.init(null, trustAllCerts, new java.security.SecureRandom());
+			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+		} catch (Exception e) {
+			System.err.println("Caught exception " + e.getMessage());
+		}
+
+		// And as before now you can use URL and URLConnection
+		System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0");
+		System.out.println("Fetching golden image " + outOfCard.get("image_golden_url"));
+		URL url = new URL(outOfCard.getString("image_golden_url"));
 		return url.openStream();
 	}
+
+
+//	private static InputStream getInputStream512(JSONObject card) throws Exception {
+//		// Create a new trust manager that trust all certificates
+//		TrustManager[] trustAllCerts = new TrustManager[]{
+//				new X509TrustManager() {
+//					public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+//						return null;
+//					}
+//					public void checkClientTrusted(
+//							java.security.cert.X509Certificate[] certs, String authType) {
+//					}
+//					public void checkServerTrusted(
+//							java.security.cert.X509Certificate[] certs, String authType) {
+//					}
+//				}
+//		};
+//
+//		// Activate the new trust manager
+//		try {
+//			SSLContext sc = SSLContext.getInstance("SSL");
+//			sc.init(null, trustAllCerts, new java.security.SecureRandom());
+//			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+//		} catch (Exception e) {
+//			System.err.println("Caught exception " + e.getMessage());
+//		}
+//
+//		// And as before now you can use URL and URLConnection
+//		System.setProperty("http.agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0");
+//		URL url = new URL("https://art.hearthstonejson.com/v1/render/latest/enUS/512x/" + card.getString("id") + ".png");
+//		return url.openStream();
+//	}
 
 	private static String fixText(JSONObject card, String text) {
 		String newText = sanitize(text);
