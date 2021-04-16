@@ -1,0 +1,1242 @@
+[
+	{
+		"id": 223,
+		"sortCategory": 4,
+		"text": "Don't call him \"Ham\" unless you want him to have a beef with you. Acquired by pre-purchasing Forged in the Barrens.",
+		"name": "Hamuul",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/68f0182c4b6770e15f93f88f4d2be025936e12db28b55a64877db4857e6b39c7.png",
+		"slug": "223-hamuul"
+	},
+	{
+		"id": 222,
+		"sortCategory": 11,
+		"text": "Turns out things can stay frosty for a seriously long time. Acquired by logging in during the anniversary event.",
+		"name": "30 Years of Blizzard",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b8494358b4a3818a517c8c60822f439b15bc3e48e0e4aca9b263de0fd50c4174.png",
+		"slug": "222-30-years-of-blizzard"
+	},
+	{
+		"id": 215,
+		"sortCategory": 4,
+		"text": "You're beginning to dream of a glorious destiny! Spoilers: It involves calamari. Acquired by pre-purchasing Madness at the Darkmoon Faire.",
+		"name": "N'Zoth",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/006ea48b6cc179d502f1db9bcbfcd83e1693a1c6eac71f437def6a4c3c3e8231.png",
+		"slug": "215-nzoth"
+	},
+	{
+		"id": 212,
+		"sortCategory": 5,
+		"text": "Bad behavior will not be tolerated! Unless it's extremely amusing. Acquired by winning 5 games in ranked mode, December 2020.",
+		"name": "Valorous Virtue",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d185b10033c210120335f11f59ca659991fb363bbb9a38fc07c89fc722cfe5ff.png",
+		"slug": "212-valorous-virtue"
+	},
+	{
+		"id": 211,
+		"sortCategory": 5,
+		"text": "This card back makes the most satisfying crunching sound if you step on it. Acquired by winning 5 games in ranked mode, November 2020.",
+		"name": "Autumn Leaf",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/5bacb20278dfb8004d57130e3d8ba4d73db3dd82ec7aab72d8f4540c7fedfa14.png",
+		"slug": "211-autumn-leaf"
+	},
+	{
+		"id": 210,
+		"sortCategory": 5,
+		"text": "True story: Jin'rokh rocked this card back while breaking circuits, faces, and the meta. Acquired by winning 5 games in ranked mode, October 2020.",
+		"name": "The Breaker",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f68a513faca53cb8ddf6aaac00752964e0502fc26c1adab818ec5c8b1e6d6059.png",
+		"slug": "210-the-breaker"
+	},
+	{
+		"id": 209,
+		"sortCategory": 5,
+		"text": "Once upon a time, heroes gathered to witness the creation of something special! Created live on stream, May 2020. Acquired by winning 5 games in ranked mode, September 2020.",
+		"name": "Faerie Tail",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/cce036b58bbbaa6210a18095473bca570ae64e3ac9344f0e6dc989190351b9d0.png",
+		"slug": "209-faerie-tail"
+	},
+	{
+		"id": 208,
+		"sortCategory": 4,
+		"text": "He is many different things to different people. To the Kirin Tor—a betrayer, to the Lich King—a faithful servant, and to dogs—a great chew toy. Acquired by pre-purchasing Scholomance Academy.",
+		"name": "Kel'Thuzad",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f63ab5b4f227a3b8be156577c0ee032e6f3856f6f25f8cb26ce1f1a6a3d2bd39.png",
+		"slug": "208-kelthuzad"
+	},
+	{
+		"id": 207,
+		"sortCategory": 5,
+		"text": "Congratulations on your acceptance to the academy! We look forward to transforming you into the magical person you're meant to be. Acquired by winning 5 games in ranked mode, August 2020.",
+		"name": "Scholomance",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1ce275bde020bc5336c2869a0e8d7df767456db1602edae5b61c3ec1eb720513.png",
+		"slug": "207-scholomance"
+	},
+	{
+		"id": 205,
+		"sortCategory": 4,
+		"text": "If you want to take the demon by the horns, you'll have to get your own in the process. Obtained by purchasing the Aranna Starseeker bundle.",
+		"name": "Aranna",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f47317692d411f8d854f36b2a2065a08122a0c0157e0dc948e4ac134925a808a.png",
+		"slug": "205-aranna"
+	},
+	{
+		"id": 204,
+		"sortCategory": 5,
+		"text": "It is the yeast you could do. Acquired by winning 5 games in ranked mode, July 2020.",
+		"name": "Rise Up!",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d78047d602b00b47c4133d0e9cc399ef6c4a6adb9ddf96846c1b33a0bb959bd7.png",
+		"slug": "204-rise-up"
+	},
+	{
+		"id": 203,
+		"sortCategory": 3,
+		"text": "It crackles with fel energy and the mechanical whir of forbidden upgrades. Acquired by successfully completing Trial by Felfire in Story mode.",
+		"name": "Rusted Legion",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/38d3c45f40324d74dcba24e5c04783db5eda157b3d2e9c605851dbe55d64ecb7.png",
+		"slug": "203-rusted-legion"
+	},
+	{
+		"id": 202,
+		"sortCategory": 5,
+		"text": "Hey, who set the Emerald Dream to dark mode?! Acquired by winning 5 games in ranked mode, June 2020.",
+		"name": "Mystic Forest",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/6e96cb55cba6e0d49462d3fef627083ae24ba5788071751a41d50a6427d34bdf.png",
+		"slug": "202-mystic-forest"
+	},
+	{
+		"id": 201,
+		"sortCategory": 5,
+		"text": "Should you find yourself in the Underrot, you may feel a bit overwrought. Acquired by winning 5 games in ranked mode, May 2020.",
+		"name": "Swamp Light",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d06eef42b208c05685fb1574cd4bcba873fe929ccab24c3d4e6562c36ed50e61.png",
+		"slug": "201-swamp-light"
+	},
+	{
+		"id": 200,
+		"sortCategory": 10,
+		"text": "We have artfully arranged the remnants from Lady Vashj's last haircut for your viewing pleasure. Acquired by pre-purchasing Ashes of Outland.",
+		"name": "Serpentine",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/ad26d8eceb89916aa44ff802df252c76b9d0fb578f88229d99125e98489a7727.png",
+		"slug": "200-serpentine"
+	},
+	{
+		"id": 198,
+		"sortCategory": 5,
+		"text": "It’s a shy guy but a fungi. Acquired by winning 5 games in ranked mode, April 2020.",
+		"name": "Blushroom",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/4c91c54941b5116c99ef87fe79e7cc81d73501f9f22025a66769c1a375dc928e.png",
+		"slug": "198-blushroom"
+	},
+	{
+		"id": 197,
+		"sortCategory": 5,
+		"text": "Fish out of water can be awkward… or decorative! Acquired by winning 5 games in ranked mode, March 2020.",
+		"name": "Playing Koi",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/92826ad8ec8804e5607eefddb64963dc5dfe0a929a7a6138c0ec737fc3b9bfdb.png",
+		"slug": "197-playing-koi"
+	},
+	{
+		"id": 196,
+		"sortCategory": 4,
+		"text": "You're expecting a bad joke here, but it's not in the cards! Acquired by purchasing the Hero Khadgar.",
+		"name": "Wondrous Wisdomcard",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/dacf95d52b602319fdd136fc12d4608f9e80d8599f83a76e5c71bf123cd6b5fb.png",
+		"slug": "196-wondrous-wisdomcard"
+	},
+	{
+		"id": 195,
+		"sortCategory": 9,
+		"text": "The good were never better, the bad were never worse, the dragon was awoken, and then that was reversed! Acquired from participating in a special promotion.",
+		"name": "Year of the Dragon",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a5d38cd5b2d26be39e618b1688469c463fa1e53fcf8c4f7dd7edecc93509a1c7.png",
+		"slug": "195-year-of-the-dragon"
+	},
+	{
+		"id": 194,
+		"sortCategory": 5,
+		"text": "Don't worry! This card back will remain lush and lovely even if you forget to water it. Acquired by winning 5 games in ranked mode, February 2020.",
+		"name": "Desert Bloom",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/6405608af6cdaa3304f9ab8b2c5b13b42f32c1dff72d524421d99226fe5073e1.png",
+		"slug": "194-desert-bloom"
+	},
+	{
+		"id": 193,
+		"sortCategory": 5,
+		"text": "If you lift this shell to your ear, you'll hear the sounds of your games from this month… Don't hold it too close. Acquired by winning 5 games in ranked mode, January 2020.",
+		"name": "Shoring Up",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/254182290802accb07ebdc449d788f34c976b452d1b1c92126b81c13a8c6620c.png",
+		"slug": "193-shoring-up"
+	},
+	{
+		"id": 191,
+		"sortCategory": 4,
+		"text": "The melody of a high elf lamentation plays, as though invoking a distant memory. Acquired by purchasing the Hero Sylvanas Windrunner.",
+		"name": "Banshee Queen",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/04cae0430a833c039a0665662dbf9933d73f2ce71e363e63bb71567905d213ad.png",
+		"slug": "191-banshee-queen"
+	},
+	{
+		"id": 190,
+		"sortCategory": 3,
+		"text": "It's dangerous and immoral, but an incredibly engrossing read! Acquired from completing the E.V.I.L. book in Galakrond's Awakening Heroic mode.",
+		"name": "Book of E.V.I.L.",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/ed017da8dbb48f179798798d103ae5cad84195c0ea9ae540a937e1763e7d0535.png",
+		"slug": "190-book-of-evil"
+	},
+	{
+		"id": 189,
+		"sortCategory": 3,
+		"text": "We all knew that the forces of good would win because they have better hats. Acquired from completing the explorers' book in Galakrond's Awakening Heroic mode.",
+		"name": "Book of Explorers",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/907fbb678f91b860de26b59ffb518472398d04098f08a877d7855cad8dce53d9.png",
+		"slug": "189-book-of-explorers"
+	},
+	{
+		"id": 188,
+		"sortCategory": 4,
+		"text": "Unlike the Ancient of War, she prefers the quiet of a friendly card game. Acquired from purchasing the Hero Dame Hazelbark.",
+		"name": "Dame Hazelbark",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/c0b8888f2d6fce5ed5f37896524866e7c668db06cca5bff751907521840e5c35.png",
+		"slug": "188-dame-hazelbark"
+	},
+	{
+		"id": 186,
+		"sortCategory": 5,
+		"text": "Somewhere through the Dark Portal, demons fly, and the fel power you dream of crackles through the sky! Acquired by winning 5 games in ranked mode, December 2019.",
+		"name": "Hellfire Peninsula",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/c911a60c05efd7dc1cb3d1636563b237c12395d159c77766309a4d23f812637d.png",
+		"slug": "186-hellfire-peninsula"
+	},
+	{
+		"id": 185,
+		"sortCategory": 5,
+		"text": "A sugary card back to honor the dead. Because they outnumber us. Acquired by winning 5 games in ranked mode, November 2019.",
+		"name": "Cake of the Dead",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/78c70571096235dab6a6c5f0f1624c38bbe3a0286a44f97dc7d1d5a0b7ff9683.png",
+		"slug": "185-cake-of-the-dead"
+	},
+	{
+		"id": 181,
+		"sortCategory": 10,
+		"text": "This card back accidentally stood in the fire, but it still looks cool! Acquired from pre-purchasing the Descent of Dragons bundle.",
+		"name": "The Shattering",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f6b9a558175730e6eb973d6a4d500f4c7adb704d8289f2407c8e57105e748a36.png",
+		"slug": "181-the-shattering"
+	},
+	{
+		"id": 180,
+		"sortCategory": 11,
+		"text": "Listen to the noise coming from that party! Wait, no… that's a battleground! Acquired by participating in Blizzard events during 2019.",
+		"name": "Blizzard Events 2019",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/9f6bd628f46847548daf7167f87a6bec0513fd5b5e6a57aaff72548b1e3a3f8a.png",
+		"slug": "180-blizzard-events-2019"
+	},
+	{
+		"id": 179,
+		"sortCategory": 3,
+		"text": "You came, you saw, you almost went bonkers! Acquired from completing Tombs of Terror in Heroic mode.",
+		"name": "Tomb Invader",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d576b5074959deebf107ba93aeefe5666b8f278f6cefe118bfe1bad639e519c1.png",
+		"slug": "179-tomb-invader"
+	},
+	{
+		"id": 178,
+		"sortCategory": 3,
+		"text": "Thanks to the League of Explorers, the titans' creations will go on and on... Acquired by successfully completing Tombs of Terror.",
+		"name": "Titanic Tasks",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/7dbe8b9737e8e40e167fe3530f608bc2ca4f18bc92a0719e421d2f4790514660.png",
+		"slug": "178-titanic-tasks"
+	},
+	{
+		"id": 177,
+		"sortCategory": 5,
+		"text": "Come for the questionable carnival games, stay for the deep fried candybars! Acquired by winning 5 games in ranked mode, October 2019.",
+		"name": "Darkmoon Faire",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3d1a1a28f24bf0f4474ecd37ef537b66522f454cb69543acc77bb4db5554ddd2.png",
+		"slug": "177-darkmoon-faire"
+	},
+	{
+		"id": 176,
+		"sortCategory": 5,
+		"text": "Was it really a raven? Or was Medivh meddling with everything in disguise all year long?! Acquired by winning 5 games in ranked mode, August 2019.",
+		"name": "Year of the Raven",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/083aa88d9ac10d63d629484ac68857d0a1abeb5ee13e9232bab87a9e63886da0.png",
+		"slug": "176-year-of-the-raven"
+	},
+	{
+		"id": 175,
+		"sortCategory": 5,
+		"text": "Vol'dun's a little dry and sandy, but it sure has good bones. Acquired by winning 5 games in ranked mode, September 2019.",
+		"name": "Sea of Dunes",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/0a549eae136b8fc411270d8dee694ed3ba57ebd37b7af2205a2b08ac77b64383.png",
+		"slug": "175-sea-of-dunes"
+	},
+	{
+		"id": 174,
+		"sortCategory": 10,
+		"text": "These pages detail her extraordinary adventures, artifact research, and pince-nez cleaning tips. Acquired from pre-purchasing the Saviors of Uldum bundle.",
+		"name": "Elise’s Journal",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b8d6c949461ad533701650a7d4d168df411dddf304f334f0ba9341a82f1c82d3.png",
+		"slug": "174-elises-journal"
+	},
+	{
+		"id": 173,
+		"sortCategory": 10,
+		"text": "There once was a League of Explorers Who championed history and order. Without any delay, They could save every day And vanquish all greedy loot hoarders. Acquired from pre-purchasing Tombs of Terror.",
+		"name": "League of Explorers",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/2c8aa63e9ba38931f171c23477114174a4c33d1e2a2fe867638db50279852628.png",
+		"slug": "173-league-of-explorers"
+	},
+	{
+		"id": 172,
+		"sortCategory": 5,
+		"text": "Long ago, this card back took up its sacred duty to keep negative emotions from overrunning your board. Though mysterious, it is highly effective. Acquired by winning 5 games in ranked mode, July 2019.",
+		"name": "Shado-Pan",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/98ffe63a5357653ecf49df92b0774f447a856d3ca98c2dccf1b598dfb10a4607.png",
+		"slug": "172-shado-pan"
+	},
+	{
+		"id": 169,
+		"sortCategory": 3,
+		"text": "Seriously though, you shouldn't always do what E.V.I.L. villains tell you to. Acquired from completing The Dalaran Heist in Heroic mode.",
+		"name": "Got Away with It!",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a837741584d68086549ef12b046c3c09175c05f8728de8b4f75b6f239761d2ef.png",
+		"slug": "169-got-away-with-it"
+	},
+	{
+		"id": 168,
+		"sortCategory": 3,
+		"text": "It's official—your mischief is greater than any magic in the city of Dalaran! Acquired by successfully completing The Dalaran Heist.",
+		"name": "Prize of Shadows",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/5a8660054e685d7254b4851d159811f95f161b82f8e295eb48426c34e18b0319.png",
+		"slug": "168-prize-of-shadows"
+	},
+	{
+		"id": 167,
+		"sortCategory": 5,
+		"text": "Something about this card is not quite right... Acquired by winning 5 games in ranked mode, June 2019.",
+		"name": "Suramar",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/429732d615ea7ce1a030a70c1a74cd99e6f3181d8c7c98483093926c7da3fb43.png",
+		"slug": "167-suramar"
+	},
+	{
+		"id": 166,
+		"sortCategory": 10,
+		"text": "The hardest part of stealing thunder is getting away with it quietly. Acquired from participating in an authorized promotion or when available in the shop.",
+		"name": "Stolen Thunder",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/2f99d938d74621ac0b53922330ba1651fe861ddc03a78fd27edf9c597645edef.png",
+		"slug": "166-stolen-thunder"
+	},
+	{
+		"id": 165,
+		"sortCategory": 5,
+		"text": "Celebrate the fleeting beauty of spring with this eternally pretty card back. Acquired by winning 5 games in ranked mode, May 2019 or when available in the shop.",
+		"name": "Awesome Blossom",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/7da8a7d0163bfa9f6fe6bca0b1d7ffb474ba7ecb61fc98ce553dfae486a6f577.png",
+		"slug": "165-awesome-blossom"
+	},
+	{
+		"id": 164,
+		"sortCategory": 10,
+		"text": "It has an important message, but it's a riddle shrouded in a song. Acquired from pre-ordering the Rise of Shadows bundle.",
+		"name": "Jewel of Lazul",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/5596273afdf9d7e56852dd822967d0a1c636ea08bbc7fd534a918ace32445ca7.png",
+		"slug": "164-jewel-of-lazul"
+	},
+	{
+		"id": 163,
+		"sortCategory": 5,
+		"text": "This card back will wilt your enemy's crops, ruin their skin, and eat the last piece of their favorite candy. It's just that evil. Acquired from winning five games in Ranked Play, April 2019.",
+		"name": "Card of Shadows",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/4ae7406d7343793aba063ca0df2877b1ebc1f426a80c200b6a4733d46f6204ce.png",
+		"slug": "163-card-of-shadows"
+	},
+	{
+		"id": 162,
+		"sortCategory": 5,
+		"text": "A seaworthy card back that can anchor even the naughtiest of nautical decks. Acquired from winning five games in Ranked Play, March 2019.",
+		"name": "Kul Tiras",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1342c9e5c7f594ac7a8388881274c9196f95be0623007920a28d4e5c2851bff8.png",
+		"slug": "162-kul-tiras"
+	},
+	{
+		"id": 161,
+		"sortCategory": 9,
+		"text": "Some machines are reportedly capable of transporting heroes into Harth's tavern, but it’s just a rumor. Acquired by logging in on a PC.",
+		"name": "Machine Dreams",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/8319e14a32748084ac6bc2fad878152af5ca1957b3ce39843168a9ad3a254c39.png",
+		"slug": "161-machine-dreams"
+	},
+	{
+		"id": 160,
+		"sortCategory": 9,
+		"text": "It isn't always easy being green, but it's definitely awesome! Acquired by logging in on an Android device.",
+		"name": "Legion Schemes",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/06f461d167ca3acfd1bd79e9d4f2335f73948643578c994e85c90a136aa01995.png",
+		"slug": "160-legion-schemes"
+	},
+	{
+		"id": 159,
+		"sortCategory": 9,
+		"text": "It's even brighter than Malto's glorious beard. Acquired by logging in on an iOS device.",
+		"name": "Pristine Scenes",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/8c182fafac791f1f9dbb88ac2471036f95a163f5b6b3a6a2398d03361fbb9012.png",
+		"slug": "159-pristine-scenes"
+	},
+	{
+		"id": 158,
+		"sortCategory": 1,
+		"text": "The Innkeeper offers to shuffle your cardbacks randomly for you. Use this cardback if you would like to have a random cardback you own assigned whenever you play!",
+		"name": "Random",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d835067892840acd343eac4626e339e6555d38c71aee7ee6ee77a5ce588fd438.png",
+		"slug": "158-random"
+	},
+	{
+		"id": 157,
+		"sortCategory": 13,
+		"text": "Look out! This card back's gone viral! Acquired by encountering another player with the Mark of Hakkar card back in any play mode.",
+		"name": "Mark of Hakkar",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/bebe3703d88a34b8d7ad1db6a69db55e03900e802a76583dc55a701e91951975.png",
+		"slug": "157-mark-of-hakkar"
+	},
+	{
+		"id": 156,
+		"sortCategory": 13,
+		"text": "Every deck should have 30 cards *crunch crunch crunch* but 29 is fine. Acquired from Winter Veil 2018",
+		"name": "Winter Veil Treat",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/c3625a4532feb31588f064bc8457183e2dc435177e62f647e06c949b1bd5f00e.png",
+		"slug": "156-winter-veil-treat"
+	},
+	{
+		"id": 155,
+		"sortCategory": 5,
+		"text": "For when you want to build a deck with extra cheese. Acquired from winning five games in Ranked Play, February 2019.",
+		"name": "Pizza Stone",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3e4c165ace0c0ce868b6f1c900dc3df4de6ae7fc02bf423aca5f16b80b1d910f.png",
+		"slug": "155-pizza-stone"
+	},
+	{
+		"id": 154,
+		"sortCategory": 5,
+		"text": "Impress your friends with Hearthstone’s coolest card back. Acquired from winning five games in Ranked Play, January 2019.",
+		"name": "Chillin’",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/60c823b7a823b291d5a880569e0e7f83f74c1609378d113b19461348d54553a7.png",
+		"slug": "154-chillin"
+	},
+	{
+		"id": 153,
+		"sortCategory": 3,
+		"text": "Your ranked opponents will shudder in fear knowing that they face... <i>a champion.</i> Acquired by successfully completing a Rumble Run.",
+		"name": "Rumble Runner",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/eb95e16a766a1a4a0ab11ba67ba3775c53e30189ce727b5dfb08b512fe10cb30.png",
+		"slug": "153-rumble-runner"
+	},
+	{
+		"id": 152,
+		"sortCategory": 9,
+		"text": "We get by with a little help from our friends. In chat. By posting funny emotes. Acquired from a special promotion.",
+		"name": "Good Cheer",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/cbe605b8db9ed6599670005073b013003c13a71c8f520c913aef840a306e8bea.png",
+		"slug": "152-good-cheer"
+	},
+	{
+		"id": 151,
+		"sortCategory": 10,
+		"text": "<i>In Stranglethorn did Rastakhan A stately card back, gold, decree: Where trolls and sacred loa ran In pits so loud and choked with fans who cheered them on with glee.</i> Acquired from the Rastakhan’s Rumble pre-purchase bundle.",
+		"name": "Ready to Rumble!",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/cd9d0379655203c9d49058991970438ad1dbffe9956aced099a1b990a4dd2a35.png",
+		"slug": "151-ready-to-rumble"
+	},
+	{
+		"id": 150,
+		"sortCategory": 8,
+		"text": "‘Twas the third time Azeroth was engulfed in the chaos of war, and by now they were exceedingly good at it. Acquired from the Warcraft III: Reforged promotion.",
+		"name": "The Third War",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d1383d9a113174062f2bf1a8b33e6144e09b85f194e544d8170c6c263994e6e7.png",
+		"slug": "150-the-third-war"
+	},
+	{
+		"id": 149,
+		"sortCategory": 5,
+		"text": "The Frostwolf orc clan trains frost wolves as loyal companions. What a crazy coincidence! Acquired from winning five games in Ranked Play, December 2018.",
+		"name": "Frostwolf",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/75463bf8f065b482b4a53c885cbc4a83efa823559579d640126955e302418e20.png",
+		"slug": "149-frostwolf"
+	},
+	{
+		"id": 148,
+		"sortCategory": 11,
+		"text": "The stars have aligned into a monumental year for Hearthstone! Acquired by participating in Blizzard events during 2018.",
+		"name": "Blizzard Events 2018",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/8af269af499ce38b0cfd28d8dbb025daadc9f3fc581469e8fe0151edd8dc1619.png",
+		"slug": "148-blizzard-events-2018"
+	},
+	{
+		"id": 147,
+		"sortCategory": 5,
+		"text": "Night elves use Moonwells to replenish their magical energies. They’re also used in a popular orc prank involving dish soap. Acquired from winning five games in Ranked Play, November 2018.",
+		"name": "Moonwell",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/2eac36efb08c7d55909fb242afbc3727ed6873b7a79c2c3df20b2c3c9239e379.png",
+		"slug": "147-moonwell"
+	},
+	{
+		"id": 145,
+		"sortCategory": 5,
+		"text": "Time to experiment! Will you make bombs? Or will you make... MORE bombs? Acquired from winning five games in Ranked Play, September 2018.",
+		"name": "Dr. Boom's Lab",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/37ec5efd04560416af49c931c03e15459bacc2b5070570499f04ec720e4b41fc.png",
+		"slug": "145-dr-booms-lab"
+	},
+	{
+		"id": 144,
+		"sortCategory": 5,
+		"text": "Is this a tribute to the notorious rogue Edwin VanCleef? Nobody knows. Because it wears a mask. Acquired from winning five games in Ranked Play, October 2018.",
+		"name": "VanCardback",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/c4827aa6becfeccef39468fe68c7a93de961254c8d356379debf109d8ca981ed.png",
+		"slug": "144-vancardback"
+	},
+	{
+		"id": 143,
+		"sortCategory": 3,
+		"text": "Show your opponent that you’re a mad genius! Or maybe a happy one, depending on the mulligan. Acquired from completing all of Dr. Boom’s puzzles.",
+		"name": "Boomsday!",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/af6ca26c99eb0b7a58610f4a9955b5439c1032d744bb3ee46a58bf7327477cc2.png",
+		"slug": "143-boomsday"
+	},
+	{
+		"id": 142,
+		"sortCategory": 10,
+		"text": "THANK YOU FOR MAKING MY CARD BACK, TRIFLING HUMANS! Acquired from the Boomsday Project pre-purchase bundle.",
+		"name": "Mecha-Jaraxxus",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/e470d57f0f9ba5ec63caa5559988d8fa03a577f5e26809e1773f6529c13d0873.png",
+		"slug": "142-mecha-jaraxxus"
+	},
+	{
+		"id": 139,
+		"sortCategory": 5,
+		"text": "When life gives you lemons, make delicious card backs! Acquired from winning five games in Ranked Play, August 2018.",
+		"name": "Lemonade",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a9dbb8d8aafddf64657dacf74f23f590fe7dc5833116a536a11848160b6c17a0.png",
+		"slug": "139-lemonade"
+	},
+	{
+		"id": 138,
+		"sortCategory": 5,
+		"text": "Behold, a grand Army of the Light! Dealing out justice 30 cards at a time. Acquired from winning five games in Ranked Play, July 2018 or when available in the shop.",
+		"name": "Lightforged",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/c00661779d2edb72e0f1294cc6769ac64e08954177131117b312d16b7e263c4c.png",
+		"slug": "138-lightforged"
+	},
+	{
+		"id": 137,
+		"sortCategory": 5,
+		"text": "The blue dragonflight jealously guards the secrets of magic, such as: Where do all those colored hankies come from? Acquired from winning five games in Ranked Play, June 2018.",
+		"name": "Back in Blue",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/5882e4968860145195de12f80f6e93a74ae8abb9b34a532733810713c3e45837.png",
+		"slug": "137-back-in-blue"
+	},
+	{
+		"id": 136,
+		"sortCategory": 5,
+		"text": "Sometimes you just gotta frolic through the grass. Acquired from winning five games in Ranked Play, May 2018.",
+		"name": "Lunara's Garden",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/da127d640333015404fdcc2efa33848c204a0273e892021a11529005c65f678f.png",
+		"slug": "136-lunaras-garden"
+	},
+	{
+		"id": 135,
+		"sortCategory": 5,
+		"text": "The finer Gilnean homes feature \"Howling Verandas\" with unobstructed lunar views. Acquired from winning five games in Ranked Play, April 2018.",
+		"name": "Raise the Roof",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/70335c36e986965a5d036437c447c8e843d7d31d29e4ccbda24e7bbd2a61d0f3.png",
+		"slug": "135-raise-the-roof"
+	},
+	{
+		"id": 131,
+		"sortCategory": 3,
+		"text": "When fancy weapons and gadgets fail, there’s always tooth and claw. Acquired from completing the Monster Hunt with all four heroes and defeating Hagatha.",
+		"name": "Monster Hunter",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f181dda268857eef5a8420301399563b739263dee0cf057dc4f9955b682b545f.png",
+		"slug": "131-monster-hunter"
+	},
+	{
+		"id": 130,
+		"sortCategory": 5,
+		"text": "It was a big year. Massive. Sure, things got a little wooly, but that’s irrelephant. Acquired from winning five games in Ranked Play, March 2018.",
+		"name": "Year of the Mammoth",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/7a50a89886985d83ca2b153f79e19ba0a81aaa21c54e42c9189a7067b4bfe4b8.png",
+		"slug": "130-year-of-the-mammoth"
+	},
+	{
+		"id": 129,
+		"sortCategory": 10,
+		"text": "The forest was eerily quiet. Aside from the howls. And the screaming. Acquired from the Witchwood pre-purchase bundle.",
+		"name": "In a Dark Wood",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a4c9b61368846c75ce92a85e950df51bed7db0a7595816277ff49b47e361146f.png",
+		"slug": "129-in-a-dark-wood"
+	},
+	{
+		"id": 128,
+		"sortCategory": 5,
+		"text": "If you can't beat 'em with strategy, dazzle 'em with magic and glitter! Acquired from achieving Rank 20 in Ranked Play, February 2018.",
+		"name": "Sparkles",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/86fc447d853b93a3ec2e647fac97b3b1ec459afbc623da49a8353059e4932bad.png",
+		"slug": "128-sparkles"
+	},
+	{
+		"id": 125,
+		"sortCategory": 8,
+		"text": "War is a terrible thing. Although highly profitable for both red and blue flagmakers. Acquired from the Battle for Azeroth Collector's Edition.",
+		"name": "Azeroth is Burning",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/769f478c0bd448b3ccba5a0d7fe6d9a1e09a34f08b060bdf7846a4bc06c59a0f.png",
+		"slug": "125-azeroth-is-burning"
+	},
+	{
+		"id": 123,
+		"sortCategory": 5,
+		"text": "No matter the chill in the air, the tavern is always warm and welcoming. Acquired from achieving Rank 20 in Ranked Play, January 2018.",
+		"name": "Frostfire",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/00b1376bfbe10e368f97c9328076c0f646a03cd429e6babb913c09593851f677.png",
+		"slug": "123-frostfire"
+	},
+	{
+		"id": 122,
+		"sortCategory": 5,
+		"text": "This card back has already been searched for traps. Acquired from achieving Rank 20 in Ranked Play, December 2017.",
+		"name": "Catacomber",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/6b10052fdfbd130d37bbf9cff47a8439ebabedc9440980e917ed9073bcb68530.png",
+		"slug": "122-catacomber"
+	},
+	{
+		"id": 119,
+		"sortCategory": 3,
+		"text": "It is better to light a candle than curse The Darkness. But you can do both. Acquired from successfully completing the Kobolds & Catacombs dungeon run with all nine classes.",
+		"name": "Candle King",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/77ae4fc022baf2752150d2ca3949de04e7eb164e9c1c6f7e75ce989b3c8a3017.png",
+		"slug": "119-candle-king"
+	},
+	{
+		"id": 118,
+		"sortCategory": 10,
+		"text": "<i>In caverns old The kobolds hide Silver and gold, oh! ** You have died **</i> Acquired from the Kobolds & Catacombs pre-purchase bundle.",
+		"name": "For the Hoard!",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/399d3116c8ae7663931d2672cac07984d57a6dd41be316354961e002a404b36a.png",
+		"slug": "118-for-the-hoard"
+	},
+	{
+		"id": 114,
+		"sortCategory": 5,
+		"text": "Power corrupts. Absolute power corrupts... AWESOMELY. Acquired from achieving Rank 20 in Ranked Play, October 2017.",
+		"name": "Unholy Knight",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/fd361d9c90dd78e6e3a3a355739629808e3defe200cd4aa150a5b4308e8f97c4.png",
+		"slug": "114-unholy-knight"
+	},
+	{
+		"id": 106,
+		"sortCategory": 5,
+		"text": "A card back so powerful it allows you to walk on water! (If frozen.) Acquired from achieving Rank 20 in Ranked Play, September 2017.",
+		"name": "Frost Knight",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b2c77bd61b5cdeda0ec3c94cddc8d72bb81f3199284cf6c7499afcc2bc0b1350.png",
+		"slug": "106-frost-knight"
+	},
+	{
+		"id": 103,
+		"sortCategory": 5,
+		"text": "You provide the sweat and tears, this card back does the rest. Acquired from achieving Rank 20 in Ranked Play, August 2017.\\t",
+		"name": "Blood Knight",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/0b530bcfd57a79cdc980ccec86f46c6a12db3a5fc60f62db8f50b77aaa7126cf.png",
+		"slug": "103-blood-knight"
+	},
+	{
+		"id": 101,
+		"sortCategory": 5,
+		"text": "Gather 'round the fire for a toasty treat! (Card back not actually edible.) Acquired from achieving Rank 20 in Ranked Play, July 2017.",
+		"name": "HearthS'mores",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/229e7eaee2ddac2d00358a9e624fbb2a0e1daca230af5b9cdf7df6b5ed756710.png",
+		"slug": "101-hearthsmores"
+	},
+	{
+		"id": 99,
+		"sortCategory": 10,
+		"text": "The undealt shuffle among us, raised from the deck for the cold hand of the Lich King. Acquired from the Knights of the Frozen Throne pre-purchase bundle.",
+		"name": "Frostmourne",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/7ced05789960c36cf21aed08edf028c32b8fc69733a7235d377469591bff9f7b.png",
+		"slug": "99-frostmourne"
+	},
+	{
+		"id": 98,
+		"sortCategory": 7,
+		"text": "A card back called forth from the realm of undying light. Gives hope to all mankind (except your opponent.) Acquired from a special promotion.",
+		"name": "Call of the Light",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/e4d54cac7cdfd73bff97dd10c27cf057fda3bc3b7097b370acadb879c7a0ae52.png",
+		"slug": "98-call-of-the-light"
+	},
+	{
+		"id": 97,
+		"sortCategory": 7,
+		"text": "A card back unleashed from the realm of infinite darkness. Looks wicked rad under a blacklight. Acquired from a special promotion.",
+		"name": "Call of the Void",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/98af61fb26a56a776ac81a6e3e923cd05448e4de7855a2ab3b0f600c481436c1.png",
+		"slug": "97-call-of-the-void"
+	},
+	{
+		"id": 96,
+		"sortCategory": 5,
+		"text": "Buoy oh buoy! Is it reely time for fishing puns? We think knot. Acquired from achieving Rank 20 in Ranked Play, November 2017.",
+		"name": "Gone Fishin'",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a359b291b12730de4798c2fce7b3677df5b418028e7da5c919b3e90727bdcec2.png",
+		"slug": "96-gone-fishin"
+	},
+	{
+		"id": 95,
+		"sortCategory": 5,
+		"text": "Deep within the Halls of the Guardian, the most powerful mages of Azeroth forged a magical card back and uttered this arcane incantation: \"Pick a card, any card...\" Acquired from achieving Rank 20 in Ranked Play, June 2017 or when available in the shop.",
+		"name": "The Magic of Dalaran",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a8160cfaaa349d7c5a5f6260dfe3aea733931e5e6d6de33762236cc6b956eedf.png",
+		"slug": "95-the-magic-of-dalaran"
+	},
+	{
+		"id": 94,
+		"sortCategory": 7,
+		"text": "Celebrate the intensity of competition with this, the Hearthstone equivalent of a gigantic foam finger. Acquired from attending approved eSports events.",
+		"name": "Thrill of Victory",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/afd22ad944fd44773362bdbe1df72066f38bab77c4cc053dedc8ca63eea81336.png",
+		"slug": "94-thrill-of-victory"
+	},
+	{
+		"id": 93,
+		"sortCategory": 5,
+		"text": "These long-lost card backs require a machete to shuffle. Acquired from achieving Rank 20 in Ranked Play, April 2017.",
+		"name": "Un'goro Mystery",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f359f377532da71e01328384b512837422fc44565b1b81900696442eaedb17b0.png",
+		"slug": "93-ungoro-mystery"
+	},
+	{
+		"id": 71,
+		"sortCategory": 5,
+		"text": "Arthas' corruption of the Sunwell really put a damper on the tourism industry of Quel'Thalas. Acquired from achieving Rank 20 in Ranked Play, May 2017.",
+		"name": "Sunwell",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/19ed3fae78fcd686fef8349ba98b7ac271c6b77ca9c7dcb2274dc0793ab5dd8f.png",
+		"slug": "71-sunwell"
+	},
+	{
+		"id": 70,
+		"sortCategory": 10,
+		"text": "Recent discoveries from the tar pits of Un'Goro have shed great insight on the evolution of card backs! Was acquired from pre-purchase of Journey to Un'Goro Card Packs.",
+		"name": "Fossil",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/ba03c7105601d618229914ec5d7f3b6a03abae6775c248c52fe6ef4eae97a7b0.png",
+		"slug": "70-fossil"
+	},
+	{
+		"id": 69,
+		"sortCategory": 5,
+		"text": "RELEASE THE CARDBACK! Acquired from achieving Rank 20 in Ranked Play, March 2017.",
+		"name": "Year of the Kraken",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d148cef4db49df447325109745378a6a8af02371697f599beb5399876a420b66.png",
+		"slug": "69-year-of-the-kraken"
+	},
+	{
+		"id": 68,
+		"sortCategory": 5,
+		"text": "The Kabal are notorious for potions, treachery, and accidentally blowing themselves up with 10-mana spells. Acquired from achieving Rank 20 in Ranked Play, February 2017.",
+		"name": "Kabal",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/dbadc12cb84a666e0ae3e463218585cfe006b0efc12402ca0df7feb40acc959b.png",
+		"slug": "68-kabal"
+	},
+	{
+		"id": 67,
+		"sortCategory": 5,
+		"text": "The Grimy Goons once kicked a guy out for tucking a Ragnaros up his sleeve. Acquired from achieving Rank 20 in Ranked Play, January 2017.",
+		"name": "Grimy Goons",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/98b2febef23db95c230cdbf81845e1238efa801b4715186e5d790e025b894e86.png",
+		"slug": "67-grimy-goons"
+	},
+	{
+		"id": 66,
+		"sortCategory": 5,
+		"text": "The Jade Lotus is the newest of the three groups vying for Gadgetzan. They're hip with today's criminal youth. Acquired from achieving Rank 20 in Ranked Play, December 2016.",
+		"name": "Jade Lotus",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/59fac83dc33a8932eba705026577006bfefa806037076dd509a96aac262c608e.png",
+		"slug": "66-jade-lotus"
+	},
+	{
+		"id": 65,
+		"sortCategory": 13,
+		"text": "Moo. That's right. You heard me. Acquired from The Dark Wanderer Tavern Brawl, 2017.",
+		"name": "Secret Level",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/8cdde58385d78f03445ba13c3458683b2dc6e2cccebf8f640a4cdc7646456aa9.png",
+		"slug": "65-secret-level"
+	},
+	{
+		"id": 64,
+		"sortCategory": 11,
+		"text": "Pull up a chair by the fireside at BlizzCon's Hearthstone Tavern, then play a few hands with this year's convention-innspired card back. Acquired by participating in Blizzard events during 2016.",
+		"name": "Welcome Inn",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/9cf3f8d6a7297dc4eff8696dd2d3aaf8ca611a2463fbf43d80b90134a3027255.png",
+		"slug": "64-welcome-inn"
+	},
+	{
+		"id": 62,
+		"sortCategory": 5,
+		"text": "Pilgrim's Bounty feasters await the arrival of delicious cherry pie. The bakers have only one request: Please eat a piece before the FOOD FIGHT begins! Acquired from achieving Rank 20 in Ranked Play, October 2016.",
+		"name": "Pie",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/257aa074be52296c83a331412aba9c863909c6d51cb1d87134eb67938f650206.png",
+		"slug": "62-pie"
+	},
+	{
+		"id": 61,
+		"sortCategory": 5,
+		"text": "The Burning Legion attempted to invade Azeroth three times in the last 10,000 years. Fourth time's the charm? Acquired from achieving Rank 20 in Ranked Play, September 2016.",
+		"name": "Legion",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/2c25f2049853b86d6abf0a88df5b2a990855b8a20bedde30722e5ff25eee4f11.png",
+		"slug": "61-legion"
+	},
+	{
+		"id": 60,
+		"sortCategory": 4,
+		"text": "Every Midsummer's Eve, night elf children gather in the Temple of the Moon for Tyrande's amazing planetarium show, \"By the Light of Elune.\" Acquired from a special promotion.",
+		"name": "Tyrande",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1447ea697d2c497a3f2dbff3a7858b721dcfdbe1bf8e3456f3147b6a511ee485.png",
+		"slug": "60-tyrande"
+	},
+	{
+		"id": 58,
+		"sortCategory": 5,
+		"text": "You're Invited! Please leave your giant bear with the valet. Acquired from achieving Rank 20 in Ranked Play, August, 2016.",
+		"name": "Medivh's Invitation",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/99d56e3d95a55f7f3b810cf200f026ad8425bf80de21d370ef69ef2f499ad2d3.png",
+		"slug": "58-medivhs-invitation"
+	},
+	{
+		"id": 56,
+		"sortCategory": 10,
+		"text": "Watch your step! Dancing Tauren are notorious for accidentally crushing toes. Acquired by purchasing all wings of One Night in Karazhan within one week of launch.",
+		"name": "Karazhan Nights",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/95259168b91f587880dce4fa355172866e3fd00f9e48c061d2503b50ae361c36.png",
+		"slug": "56-karazhan-nights"
+	},
+	{
+		"id": 54,
+		"sortCategory": 5,
+		"text": "Be sure to pack your picnic basket, towel, and Anti-Murloc Spray. Acquired from achieving Rank 20 in Ranked Play, July 2016.",
+		"name": "Tinyfin Beach",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/02affafa7c87854c695db8a8c54b3ed2d9f50e52d2931434f89db30a1ac537eb.png",
+		"slug": "54-tinyfin-beach"
+	},
+	{
+		"id": 53,
+		"sortCategory": 3,
+		"text": "Don't tell Netherspite, but mischievous guests have been getting into all manner of shenanigans with his portals! Acquired from completing One Night in Karazhan in Heroic mode.",
+		"name": "The Blue Portal",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/4d656efc531dfc5af15176c024c2ef6e35d66078262ef4b40de49e22712a8d7a.png",
+		"slug": "53-the-blue-portal"
+	},
+	{
+		"id": 50,
+		"sortCategory": 5,
+		"text": "Surrounded by fertile farmland that grows delectable giant produce, Halfhill is the culinary heart of Pandaria. \"Come to Halfhill! Double your weight!\" Acquired from achieving Rank 20 in Ranked Play, November 2016.",
+		"name": "Halfhill",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d8d72ffa2d8e12c5f03a232ecf87e77fb2b44468b7549553b24d0a8677a2be91.png",
+		"slug": "50-halfhill"
+	},
+	{
+		"id": 49,
+		"sortCategory": 5,
+		"text": "Home of the Drakkari ice trolls, Zul'Drak consistently produces the best figure skaters of all the troll tribes. Acquired from achieving Rank 20 in Ranked Play, June 2016.",
+		"name": "Zul'Drak",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/bce85ff0cd7248a25787ffcb1c620cbcfdb8fef5fa8613e2bf3bf37e62705cd7.png",
+		"slug": "49-zuldrak"
+	},
+	{
+		"id": 48,
+		"sortCategory": 5,
+		"text": "After Outland became what it is, Shadowmoon Valley has always been full of demonic energy. Gul'dan's favorite spa destination! Acquired from achieving Rank 20 in Ranked Play, May 2016.",
+		"name": "Shadowmoon Valley",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/46e2c0e48af6cf0b48b428812254047fe706ff984c9a583e65514fc934428c1a.png",
+		"slug": "48-shadowmoon-valley"
+	},
+	{
+		"id": 47,
+		"sortCategory": 5,
+		"text": "There are several cults trying to summon the Old God Yogg-Saron, and the competition for cultists is causing salaries to skyrocket. Acquired from achieving Rank 20 in Ranked Play, April 2016 or when available in the shop.",
+		"name": "Clutch of Yogg-Saron",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/cddd24b9070b84b53a74f146406505728cfe251cbd5c40b34b6dada137386c0e.png",
+		"slug": "47-clutch-of-yogg-saron"
+	},
+	{
+		"id": 46,
+		"sortCategory": 5,
+		"text": "The Terror of Elwynn, the King of Gnolls. They say he bathes in the tears of young heroes, hence the wet dog smell. Acquired from achieving Rank 20 in Ranked Play, March 2016.",
+		"name": "Hogger",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/fe4e3db8d59f027e072362e6ed147afb15d6963b20ae39f7ac99486f666543ba.png",
+		"slug": "46-hogger"
+	},
+	{
+		"id": 45,
+		"sortCategory": 10,
+		"text": "For an Old God who's stuck in the lightless depths of an ancient temple, C'Thun sure has a lot of eyeballs. Was acquired from pre-purchase of the Whispers of the Old Gods Card Packs or when available in the shop.",
+		"name": "Eyes of C'Thun",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/bb161a121a65735019ba51b1d6ca739f6575a49af1f640f51a5ccf2c7121860b.png",
+		"slug": "45-eyes-of-cthun"
+	},
+	{
+		"id": 44,
+		"sortCategory": 8,
+		"text": "The cavalry's here! Acquired from Overwatch Origins or Collector's Edition.",
+		"name": "Overwatch",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/013c3a56f0659b0215b24086866c7666e5e26a65573070657f64fc6354d916a2.png",
+		"slug": "44-overwatch"
+	},
+	{
+		"id": 43,
+		"sortCategory": 13,
+		"text": "A beautiful Winter Veil wreath around a snow globe full of THE FROSTY DESTRUCTION OF YOUR OPPONENTS! I mean... good cheer. Acquired from Winter Veil 2015-2017 or when available in the shop.",
+		"name": "Winter Veil Wreath",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1aea3a2ee8a76bc5bae9fd6a95f10a755f71ed155193d09223e73c17cdbf6ccf.png",
+		"slug": "43-winter-veil-wreath"
+	},
+	{
+		"id": 42,
+		"sortCategory": 5,
+		"text": "The World Shaman is probably THE best known celebrity in Azeroth. It's a mystery that his signature necklace never caught on as a fashion trend. Acquired from achieving Rank 20 in Ranked Play, December 2015 or when available in the shop.",
+		"name": "Thrall",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d86f261e65800a617930933e1c1fa4ab6be2de989a7546dda735e49fc5879106.png",
+		"slug": "42-thrall"
+	},
+	{
+		"id": 41,
+		"sortCategory": 5,
+		"text": "Unofficial slogan: \"Great warriors come from happy Tauren tribes. Happy Tauren come from Thunder Bluff!\" Acquired from achieving Rank 20 in Ranked Play, February 2016 or when available in the shop.",
+		"name": "Thunder Bluff",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/34921cb32309093f6e0db88c694fc10de2f3ce13c695e89febe66cd3a36b3bec.png",
+		"slug": "41-thunder-bluff"
+	},
+	{
+		"id": 40,
+		"sortCategory": 5,
+		"text": "Many believe goblins made up this holiday to sell candy. It's not true! They also sell flowers and perfume! Acquired from achieving Rank 20 in Ranked Play, January 2016 or when available in the shop.",
+		"name": "Love Is in the Air",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/5097bc0b68475eb12c50cf25d805a80eb4a1eecce26d5d9282ce1abebaf8f690.png",
+		"slug": "40-love-is-in-the-air"
+	},
+	{
+		"id": 39,
+		"sortCategory": 8,
+		"text": "Came with a note. What on Azeroth does \"En Taro Adun\" mean? Acquired from Legacy of the Void Deluxe Edition.",
+		"name": "Legacy of the Void",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a698c33cfdeb06f9779194754fdb0d7a7e0de1820a3926db10fe4ef7e6782908.png",
+		"slug": "39-legacy-of-the-void"
+	},
+	{
+		"id": 38,
+		"sortCategory": 11,
+		"text": "Hearthstone on phones, Tavern Brawls, Blackrock Mountain, The Grand Tournament and more! A very cool year, indeed. Acquired by participating in Blizzard events during 2015.",
+		"name": "Blizzard 2015",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/5a4617c9ebc5edc0e66fbb08a04fb3a46fa728b22915d885d34e1193c7724863.png",
+		"slug": "38-blizzard-2015"
+	},
+	{
+		"id": 37,
+		"sortCategory": 3,
+		"text": "Wait, isn't this staff supposed to be in the museum? RENO!!! Acquired from completing the League of Explorers in Heroic mode.",
+		"name": "Staff of Origination",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/e19652c528617eaca5c594f2f2c34cb8ad6d4cf117d5dab19be5c7ad7690038c.png",
+		"slug": "37-staff-of-origination"
+	},
+	{
+		"id": 36,
+		"sortCategory": 5,
+		"text": "A League of Explorers treasure map! Or the Cartographer's grocery list? Let's find out! Acquired from achieving Rank 20 in Ranked Play, November 2015.",
+		"name": "Explorer's Map",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/28418ebcece3cd9445300003733e846a82a5811956595ff914a4ec586e5eacc4.png",
+		"slug": "36-explorers-map"
+	},
+	{
+		"id": 35,
+		"sortCategory": 5,
+		"text": "5 out of 10 ogres agree: this card back is SMASHING! Acquired from achieving Rank 20 in Ranked Play, October 2015.",
+		"name": "Highmaul",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/28566392ba2cb4f7ffdefd57ed9225675d1130d678d57c10c4303a715075d0a9.png",
+		"slug": "35-highmaul"
+	},
+	{
+		"id": 34,
+		"sortCategory": 5,
+		"text": "The capital city of the draenei is actually a crash-landed dimensional ship. Despite its wonders and Velen's best efforts, its tourism industry is sluggish due to its remote location (and the man-eating mutant plants). Acquired from achieving Rank 20 in Ranked Play, September 2015.",
+		"name": "Exodar",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/88767a0f4a1c7fec5d68c271cd01d054dc4101fdf902c01f8b9e4f18ca3fdc01.png",
+		"slug": "34-exodar"
+	},
+	{
+		"id": 33,
+		"sortCategory": 7,
+		"text": "We can feel the energy in the air. And it's coming from... YOU! Acquired from attending approved eSports events.",
+		"name": "Power Core",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/7f00eda42846a97f4432ee0791d55a3c704d8b995ad0cdf2ab58736cfc15dcb0.png",
+		"slug": "33-power-core"
+	},
+	{
+		"id": 32,
+		"sortCategory": 5,
+		"text": "All over The Grand Tournament's grounds, you can find knights at jousting practice. Poor target dummies. So much senseless hay shed on the path to glory... Acquired from achieving Rank 20 in Ranked Play, August 2015.",
+		"name": "Tournament Grounds",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1f2d50bac336dabe335cbb339ccc2be120fd33f2b70fdc3b367766a2db643630.png",
+		"slug": "32-tournament-grounds"
+	},
+	{
+		"id": 31,
+		"sortCategory": 10,
+		"text": "After the fall of the Lich King, it was suggested that we celebrate then go home. Those of us who stayed decided to continue the Tournament with a new mission: FUN! Was acquired from pre-purchase of The Grand Tournament Card Packs.",
+		"name": "The Grand Tournament",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/06db697765b56aa1c8d1f5ce16c8d42ed9cc794cfb827388c9f55471859ccfdf.png",
+		"slug": "31-the-grand-tournament"
+	},
+	{
+		"id": 30,
+		"sortCategory": 5,
+		"text": "Vol'jin's tribe, the Darkspear trolls, no longer practices cannibalism. Officially. Acquired from achieving Rank 20 in Ranked Play, July 2015.",
+		"name": "Darkspear",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/7e416ada582c34c1149448bb893c2f1942d45d50104cd8dd18d85a85c42c1f93.png",
+		"slug": "30-darkspear"
+	},
+	{
+		"id": 29,
+		"sortCategory": 9,
+		"text": "Gifts from the Galaxy! This card back is truly out of this world. Awarded through the Samsung Galaxy promotion!",
+		"name": "Samsung Galaxy",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1174a87e2a90287adc6c744c3d2925ac919f5a48c47af65c15149082e8d0a1f4.png",
+		"slug": "29-samsung-galaxy"
+	},
+	{
+		"id": 28,
+		"sortCategory": 5,
+		"text": "Nestled in the boughs of a giant tree, Darnassus is the capital city of the night elves. Also home of the world famous Darnassus Kimchi Pie! Acquired from achieving Rank 20 in Ranked Play, June 2015.",
+		"name": "Darnassus",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a7fb0763d3af1d769a0e55416974d4acca1fcc6174047810365a675754b01b90.png",
+		"slug": "28-darnassus"
+	},
+	{
+		"id": 27,
+		"sortCategory": 4,
+		"text": "He certainly has a thing for crows and ravens. Acquired from purchasing the Hero Medivh.",
+		"name": "Medivh",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/60d806566df2fc31974c55810d8e0506cab7f67202e1dc47a5a2cc2fc9eb15a4.png",
+		"slug": "27-medivh"
+	},
+	{
+		"id": 26,
+		"sortCategory": 4,
+		"text": "As the eldest of the three Bronzebeard brothers, Magni always got the coolest toys. He always shared, though! Acquired from purchasing the Hero Magni Bronzebeard.",
+		"name": "Magni",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/4027f46533d4a7f76a81097cbb09a51f2c9a4509f433f89845fba9b5d9a5add7.png",
+		"slug": "26-magni"
+	},
+	{
+		"id": 25,
+		"sortCategory": 4,
+		"text": "When she wants to shoot an apple on your head, you don't have to worry. Unless you're an orc. Acquired from purchasing the Hero Alleria Windrunner.",
+		"name": "Alleria",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/ea06033ea92113e3d3b1c0eaaa18cd974a1d101bfa6dfbb895635d85c093f3fb.png",
+		"slug": "25-alleria"
+	},
+	{
+		"id": 24,
+		"sortCategory": 8,
+		"text": "This arrived for you from the Nexus. Might want to watch out for those whirling blade thingies. Acquired from reaching Player Level 15 in the Blizzard game Heroes of the Storm.",
+		"name": "Heroes of the Storm",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/8519bf4818a6d5838b6a96c6a131a423c048ed9f5c97b533ea1c6eb4dc04fc6d.png",
+		"slug": "24-heroes-of-the-storm"
+	},
+	{
+		"id": 23,
+		"sortCategory": 5,
+		"text": "Stealth. Style. Shurikens. Way better than Pirates! Acquired from achieving Rank 20 in Ranked Play, May 2015.",
+		"name": "Ninjas!",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/a85ec077c98982fd3c10ea3dd3afea3790f1879e289562a1d42ca140eac1d65a.png",
+		"slug": "23-ninjas"
+	},
+	{
+		"id": 22,
+		"sortCategory": 5,
+		"text": "\"Is that a cupcake on a cake?\"\" you ask? Yes. Yes it is. Acquired from achieving Rank 20 in Ranked Play, April 2015 or when available in the shop.",
+		"name": "Cupcake",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b22ec83b34d7007d6eda88e179c8f8ebefc006c0b766bf1b9b5896d16891e112.png",
+		"slug": "22-cupcake"
+	},
+	{
+		"id": 21,
+		"sortCategory": 3,
+		"text": "You didn't actually believe someone named \"Lord Victor Nefarious\" wasn't up to anything nefarious, did you? Acquired from completing Blackrock Mountain in Heroic mode.",
+		"name": "Nefarian",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/46cdef1674bc71215b8f4d5ea55e102a018617aef40e69458aeeb445af276778.png",
+		"slug": "21-nefarian"
+	},
+	{
+		"id": 20,
+		"sortCategory": 12,
+		"text": "Solid gold, baby. Acquired with a high level finish in approved eSports events.",
+		"name": "Golden Celebration",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/9dce702ca5ee83fa7267d12ed4f81da8da525236f9a380dedf2105143ead32ab.png",
+		"slug": "20-golden-celebration"
+	},
+	{
+		"id": 19,
+		"sortCategory": 5,
+		"text": "The Firelord is most often seen relaxing in his hot tub, even when he's trying to burn down the world. Acquired from achieving Rank 20 in Ranked Play, March 2015 or participating in Fire Festival 2019.",
+		"name": "Ragnaros",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3f54391c977c6eeafa58dc2ff75db8922160f872c57ade9d14c48294a5d4752b.png",
+		"slug": "19-ragnaros"
+	},
+	{
+		"id": 18,
+		"sortCategory": 10,
+		"text": "The Molten Core of Azeroth and not a chocolate lava cake, unfortunately. Was acquired from pre-purchase of Blackrock Mountain.",
+		"name": "Molten Core",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/91d897a016edeff898c69006e7533bcdd90788d25ee5c90ad6823b3b122c1ecc.png",
+		"slug": "18-molten-core"
+	},
+	{
+		"id": 17,
+		"sortCategory": 5,
+		"text": "Happy New Year! Acquired from achieving Rank 20 in Ranked Play, February 2015 or when available in the shop.",
+		"name": "Lunar New Year",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/508a9f5b24b633df43905bd338425c005b9e612ca36a51c427596f9b5cfb7b8a.png",
+		"slug": "17-lunar-new-year"
+	},
+	{
+		"id": 16,
+		"sortCategory": 5,
+		"text": "Vindicator Maraad was a paladin of great courage and strength. Don't let the pretty pastel tones fool you. Acquired from achieving Rank 20 in Ranked Play, January 2015.",
+		"name": "Maraad",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/4e40dc29d7936eecae08c230d12ca4e1b2487317bd5d830314447d037ae6d58a.png",
+		"slug": "16-maraad"
+	},
+	{
+		"id": 15,
+		"sortCategory": 5,
+		"text": "This multifunctional device also works as a gnomish army knife, a shoe horn and a pass to the Deeprun Tram. Gnomish ingenuity! Acquired from achieving Rank 20 in Ranked Play, December 2014.",
+		"name": "Gnomes",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b0a9c651ff7d954e61243a70e08b351b0df3e6709e71980dd0a7c87747c53c27.png",
+		"slug": "15-gnomes"
+	},
+	{
+		"id": 14,
+		"sortCategory": 8,
+		"text": "When they aren't plotting to kill everyone and take over the world, even the Iron Horde enjoy a game of Hearthstone. Acquired from Warlords of Draenor Digital Deluxe Edition.",
+		"name": "Warlords",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/ada3e664203f927c17bc828ba5311da7bb08f3c40a6b3628980c0f1d23eb4a9c.png",
+		"slug": "14-warlords"
+	},
+	{
+		"id": 13,
+		"sortCategory": 7,
+		"text": "Mascot of Dalaran University. Rarely seen, because no one ever shows up to football games there. Acquired by participating in TeSPA or other college affiliate program.",
+		"name": "Dalaran Flame",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/7f59a1483d40404716db200321e3cc04c418018f7953f0cebe87457162d21a0d.png",
+		"slug": "13-dalaran-flame"
+	},
+	{
+		"id": 12,
+		"sortCategory": 11,
+		"text": "The year Hearthstone was born. What a great year! Acquired by participating in Blizzard events during 2014.",
+		"name": "Blizzard 2014",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/84ade796bbf7dee8e7c9a415e50838e6e44b74ac687c91b6ce96f9deb6c78082.png",
+		"slug": "12-blizzard-2014"
+	},
+	{
+		"id": 11,
+		"sortCategory": 5,
+		"text": "4 out of 5 goblins agree: This card back doesn't explode! Acquired from achieving Rank 20 in Ranked Play, November 2014.",
+		"name": "Goblins",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/48e341b0c49b463be35521135b2dddf3e48b1b9cb99036a145d407b555cd8460.png",
+		"slug": "11-goblins"
+	},
+	{
+		"id": 10,
+		"sortCategory": 5,
+		"text": "The Hallow's End candy bucket! Or the Headless Horseman's spare head! Stick your hand in and find out. Acquired from achieving Rank 20 in Ranked Play, October 2014 or when available in the shop.",
+		"name": "Hallow's End",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/221af501444596131e0cfb2286ad8a9ce73233c7aca2219ed10ea53893dd7a68.png",
+		"slug": "10-hallows-end"
+	},
+	{
+		"id": 9,
+		"sortCategory": 5,
+		"text": "Treasure. Grog. Hooks for hands. Way better than Ninjas! Acquired from achieving Rank 20 in Ranked Play, September 2014.",
+		"name": "Pirates!",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/0904b701d72dcc801f7b4a4d5795ce04d71c65efd0b374d31bbb3c7336ca7620.png",
+		"slug": "9-pirates"
+	},
+	{
+		"id": 8,
+		"sortCategory": 5,
+		"text": "In the frozen heart of Icecrown Citadel, a hero's mettle will be tested. Bring a parka. Acquired from achieving Rank 20 in Ranked Play, August 2014.",
+		"name": "Icecrown",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/68ccba4348dffb19f3ca71b5b92c0214bc8899b3e32c466d19840f4feb7d782e.png",
+		"slug": "8-icecrown"
+	},
+	{
+		"id": 7,
+		"sortCategory": 3,
+		"text": "You can tell a lot about an Abomination by his stitching. This one just screams \"insane\". Literally. Acquired from completing the Curse of Naxxramas in Heroic mode.",
+		"name": "Heroic Naxxramas",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b014125a707fa8bd1e53d701b2d58b55d05932c1930836b8884ad5ce5ad21a73.png",
+		"slug": "7-heroic-naxxramas"
+	},
+	{
+		"id": 6,
+		"sortCategory": 5,
+		"text": "The gooey center is Ooze slime. Don't lick it. Acquired from achieving Rank 20 in Ranked Play, July 2014, or when available in the shop.",
+		"name": "Naxxramas",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3aa1f98339981c49174a60455887627fa41f6b9795eb0279df24616e9d2260ff.png",
+		"slug": "6-naxxramas"
+	},
+	{
+		"id": 5,
+		"sortCategory": 6,
+		"text": "Wow. Hardcore. Acquired from achieving Legend Rank in Ranked Play.",
+		"name": "Legend",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/d63c61999d96d5274157b6773b9d5df268db1f45e1fec83b1fa4cd8692364674.png",
+		"slug": "5-legend"
+	},
+	{
+		"id": 4,
+		"sortCategory": 2,
+		"text": "A generous gift from the Innkeeper. He loves to see his guests having a good time together. Play three matches against players at a Fireside Gathering.",
+		"name": "Fireside",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/04a1f1d5ec480f9bd1b4405f919937d89a07ba68849a6a36eadfccaccc1badd6.png",
+		"slug": "4-fireside"
+	},
+	{
+		"id": 3,
+		"sortCategory": 5,
+		"text": "Unfortunately, the rainbow generator can only produce oval rainbows. Gnomish technology still has a ways to go. Acquired from achieving Rank 20 in Ranked Play, June 2014.",
+		"name": "Rainbow!",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/0b0c51a191761a7cab6e9f8a14d1ba73b59769433deb05b4b03fa58e1ece9d1b.png",
+		"slug": "3-rainbow"
+	},
+	{
+		"id": 2,
+		"sortCategory": 5,
+		"text": "\"Fel Flame Green\" is always in fashion at the Black Temple. Acquired from achieving Rank 20 in Ranked Play, May 2014.",
+		"name": "Black Temple",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/1688973e2a8f7de364432bdf779f5cb3df5b73e880b82a13564507033c27030e.png",
+		"slug": "2-black-temple"
+	},
+	{
+		"id": 1,
+		"sortCategory": 5,
+		"text": "Hearthstone is a very popular game in Pandaria. Official card game of the Shado-Pan! Acquired from achieving Rank 20 in Ranked Play, April 2014.",
+		"name": "Pandaria",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/b2333f26ad0a1c05a784f7dfc3cf088527fe4dbc3cc745db69cc6d809cae481f.png",
+		"slug": "1-pandaria"
+	},
+	{
+		"id": 0,
+		"sortCategory": 1,
+		"text": "The only card back you'll ever need.",
+		"name": "Classic",
+		"image": "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/f7d4aa4cdcf78441cc8d0bae954a55a271ad9cedc89c611b8fc0cf0859a8a32f.png",
+		"slug": "0-classic"
+	}
+]

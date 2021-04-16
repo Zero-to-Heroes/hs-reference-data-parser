@@ -23,9 +23,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class GenerateCardData {
-	private static final boolean FETCH_IMAGES = false;
-	private static final boolean FORCE_REFETCH_IMAGES = false;
-	private static final boolean ONLY_BGS = false;
+	private static final boolean FETCH_IMAGES = true;
+	private static final boolean FORCE_REFETCH_IMAGES = true;
+	private static final boolean ONLY_BGS = true;
 
 	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE =
 			"E:\\Source\\hearthsim\\python-unitypack\\out\\audio2";
@@ -33,7 +33,7 @@ public class GenerateCardData {
 	private static final Map<String, String> SET_CODES = buildSetCodes();
 	// The exported info from hearthstonejson isn"t good
 	private static final List<String> CARDS_TO_DOWNLOAD = Lists.newArrayList(
-		// 20.0
+//		// 20.0
 //		"YOP_015", "NEW1_012", "SCH_243",
 //			"DAL_177", "DRG_322", "EX1_544", "CS2_084",
 //			"CS2_237", "ULD_156", "CS2_103", "ULD_720",
@@ -44,8 +44,19 @@ public class GenerateCardData {
 //			"LOOT_093", "DRG_250", "FP1_028", "EX1_029", "DRG_255t2",
 //			"NEW1_019", "YOD_032", "DRG_071", "ICC_466",
 //			"EX1_089", "ICC_705", "DAL_736", "DRG_089",
-
-
+//		// 20.0.2
+//			"DMF_108", "BAR_875", "SCH_351", "SCH_248",
+//			"BAR_074", "BAR_076",
+//			"TB_BaconShop_HP_037a", "TB_BaconShop_HP_075",
+//			"BGS_037", "TB_BaconUps_107",
+//			"BGS_017", "TB_BaconUps_086",
+//			"BGS_078", "TB_BaconUps_135",
+//			"BGS_032", "TB_BaconUps_103",
+//			"BGS_126", "TB_BaconUps_166",
+//			"BGS_124", "TB_BaconUps_163",
+//			"BGS_100", "TB_BaconUps_200",
+//			"BAR_721t",
+//			"PVPDR_SCH_Roguet1", "PVPDR_BAR_Passive01", "PVPDR_DMF_Roguep1"
 	);
 	private static final List<String> CARD_IDS_TO_FIX = Lists.newArrayList(
 	);
@@ -56,6 +67,7 @@ public class GenerateCardData {
 		result.put("1403", "Yod");
 		result.put("year_of_the_dragon", "Yod");
 		result.put("1463", "Demon_hunter_initiate");
+		result.put("expert1", "legacy");
 		return result;
 	}
 
@@ -105,19 +117,19 @@ public class GenerateCardData {
 //				.map(File::getName)
 //				.collect(Collectors.toSet());
 
-		Set<String> existingTextures = Arrays.stream(new File("E:\\hearthstone_images\\textures").listFiles())
-				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
-				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
-				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
-				.map(File::getName)
-				.collect(Collectors.toSet());
-
-		Set<String> existingTiles = Arrays.stream(new File("E:\\hearthstone_images\\tiles").listFiles())
-				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
-				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
-				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
-				.map(File::getName)
-				.collect(Collectors.toSet());
+//		Set<String> existingTextures = Arrays.stream(new File("E:\\hearthstone_images\\textures").listFiles())
+////				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+////				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+////				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+////				.map(File::getName)
+////				.collect(Collectors.toSet());
+////
+////		Set<String> existingTiles = Arrays.stream(new File("E:\\hearthstone_images\\tiles").listFiles())
+////				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+////				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+////				.map(GenerateCardData::flattenDirectoryStructure).flatMap(List::stream)
+////				.map(File::getName)
+////				.collect(Collectors.toSet());
 //        Set<String> existingImages = new HashSet<>();
 
 		System.out.println("init done " + referenceCards.length() + ", " + soundEffects.length() + ", " + audioClips.size());
@@ -222,8 +234,9 @@ public class GenerateCardData {
 				if (!ONLY_BGS && !FORCE_REFETCH_IMAGES && existingImages.contains(imageName)
 						&& existingImagesGolden.contains(animatedImageName)
 //						&& existingImages512.contains(imageName)
-						&& existingTextures.contains(texture)
-						&& existingTiles.contains(texture)) {
+//						&& existingTextures.contains(texture)
+//						&& existingTiles.contains(texture)
+						) {
 					System.out.println("File exists: " + imageName);
 					continue;
 				}
@@ -272,44 +285,44 @@ public class GenerateCardData {
 					System.err.println("Could not find bgs image! " + e.getMessage());
 				}
 
-				try {
-					// Download the texture
-					if (!ONLY_BGS && (FORCE_REFETCH_IMAGES || !existingTextures.contains(texture))) {
-						InputStream in = getInputStreamTexture(card);
-						Files.copy(in, Paths.get("E:\\hearthstone_images\\textures/" + texture));
-						long imageSize = Files.size(Paths.get("E:\\hearthstone_images\\textures/" + texture));
-						if (imageSize > 0) {
-							in.close();
-							System.out.println("Downloaded texture for " + id);
-						}
-						else {
-							Paths.get("E:\\hearthstone_images\\textures/" + texture).toFile().delete();
-							System.out.println("Empty textures: " + texture);
-						}
-					}
-				}catch (FileAlreadyExistsException e) {
-				} catch (Exception e) {
-					System.err.println("Could not find textures! " + e.getMessage());
-				}
-				try {
-					// Download the texture
-					if (!ONLY_BGS && (FORCE_REFETCH_IMAGES || !existingTiles.contains(texture))) {
-						InputStream in = getInputStreamTile(card);
-						Files.copy(in, Paths.get("E:\\hearthstone_images\\tiles/" + texture));
-						long imageSize = Files.size(Paths.get("E:\\hearthstone_images\\tiles/" + texture));
-						if (imageSize > 0) {
-							in.close();
-							System.out.println("Downloaded tile for " + id);
-						}
-						else {
-							Paths.get("E:\\hearthstone_images\\tiles/" + texture).toFile().delete();
-							System.out.println("Empty tile: " + texture);
-						}
-					}
-				}catch (FileAlreadyExistsException e) {
-				} catch (Exception e) {
-					System.err.println("Could not find tile! " + e.getMessage());
-				}
+//				try {
+//					// Download the texture
+//					if (!ONLY_BGS && (FORCE_REFETCH_IMAGES || !existingTextures.contains(texture))) {
+//						InputStream in = getInputStreamTexture(card);
+//						Files.copy(in, Paths.get("E:\\hearthstone_images\\textures/" + texture));
+//						long imageSize = Files.size(Paths.get("E:\\hearthstone_images\\textures/" + texture));
+//						if (imageSize > 0) {
+//							in.close();
+//							System.out.println("Downloaded texture for " + id);
+//						}
+//						else {
+//							Paths.get("E:\\hearthstone_images\\textures/" + texture).toFile().delete();
+//							System.out.println("Empty textures: " + texture);
+//						}
+//					}
+//				}catch (FileAlreadyExistsException e) {
+//				} catch (Exception e) {
+//					System.err.println("Could not find textures! " + e.getMessage());
+//				}
+//				try {
+//					// Download the texture
+//					if (!ONLY_BGS && (FORCE_REFETCH_IMAGES || !existingTiles.contains(texture))) {
+//						InputStream in = getInputStreamTile(card);
+//						Files.copy(in, Paths.get("E:\\hearthstone_images\\tiles/" + texture));
+//						long imageSize = Files.size(Paths.get("E:\\hearthstone_images\\tiles/" + texture));
+//						if (imageSize > 0) {
+//							in.close();
+//							System.out.println("Downloaded tile for " + id);
+//						}
+//						else {
+//							Paths.get("E:\\hearthstone_images\\tiles/" + texture).toFile().delete();
+//							System.out.println("Empty tile: " + texture);
+//						}
+//					}
+//				}catch (FileAlreadyExistsException e) {
+//				} catch (Exception e) {
+//					System.err.println("Could not find tile! " + e.getMessage());
+//				}
 
 //				try {
 //					if (!ONLY_BGS && (FORCE_REFETCH_IMAGES || !existingImages512.contains(imageName))) {
