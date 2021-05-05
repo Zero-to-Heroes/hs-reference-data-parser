@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 public class GenerateCardData {
 	private static final boolean FETCH_IMAGES = true;
 	private static final boolean FORCE_REFETCH_IMAGES = true;
-	private static final boolean ONLY_BGS = true;
+	private static final boolean ONLY_BGS = false;
 
 	private static final String PYTHON_UNITYPACK_AUDIO_OUT_DIRE =
 			"E:\\Source\\hearthsim\\python-unitypack\\out\\audio2";
@@ -57,6 +57,14 @@ public class GenerateCardData {
 //			"BGS_100", "TB_BaconUps_200",
 //			"BAR_721t",
 //			"PVPDR_SCH_Roguet1", "PVPDR_BAR_Passive01", "PVPDR_DMF_Roguep1"
+
+			// 20.2
+			"BAR_329", "BAR_326", "BAR_537", "BAR_540",
+			"BAR_916", "BAR_026", "BAR_020", "DAL_090", "GIL_534",
+			"DAL_040", "CFM_809", "CFM_688", "CFM_810",
+			"GILA_BOSS_68t", "Story_02_QuilboarHunter", "TRLA_172",
+			"PVPDR_YOP_PaladinT3"
+
 	);
 	private static final List<String> CARD_IDS_TO_FIX = Lists.newArrayList(
 	);
